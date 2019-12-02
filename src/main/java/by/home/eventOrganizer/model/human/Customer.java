@@ -2,7 +2,9 @@ package by.home.eventOrganizer.model.human;
 
 import by.home.eventOrganizer.model.detail.Order;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -40,4 +42,12 @@ public class Customer extends Person{
         this.summa = summa;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "discount=" + discount +
+                ", summa=" + summa +
+//                ", order=" + order +
+                "} " + super.toString();
+    }
 }

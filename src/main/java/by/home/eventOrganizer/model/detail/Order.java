@@ -112,4 +112,18 @@ public class Order extends BaseEntity {
     public void setExecuteDate(LocalDate executeDate) {
         this.executeDate = executeDate;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "goods=" + goods +
+                ", beverages=" + beverages +
+                ", staff=" + staff +
+                ", customer=" + customer +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", executeDate=" + executeDate +
+                ", address=" + address +
+                "} " + super.toString();
+    }
 }

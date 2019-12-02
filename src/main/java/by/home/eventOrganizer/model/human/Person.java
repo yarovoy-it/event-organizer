@@ -17,8 +17,8 @@ public abstract class Person extends BaseEntity {
     @Column(name = "phone_number", nullable = false, unique = true)
     private Long phoneNumber;
 
-    @OneToOne
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id", referencedColumnName = "id", unique = true)
     private Address address;
 
     public String getName() {
