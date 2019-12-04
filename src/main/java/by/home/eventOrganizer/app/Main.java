@@ -3,11 +3,13 @@ package by.home.eventOrganizer.app;
 import by.home.eventOrganizer.config.AppConfiguration;
 import by.home.eventOrganizer.model.detail.Address;
 import by.home.eventOrganizer.model.detail.enums.City;
+import by.home.eventOrganizer.model.gds.Beverage;
 import by.home.eventOrganizer.model.human.Customer;
 import by.home.eventOrganizer.model.human.Staff;
 import by.home.eventOrganizer.model.human.enums.Department;
 import by.home.eventOrganizer.service.detail.AddressService;
 import by.home.eventOrganizer.service.detail.OrderService;
+import by.home.eventOrganizer.service.gds.BeverageService;
 import by.home.eventOrganizer.service.human.CustomerService;
 import by.home.eventOrganizer.service.human.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class Main {
 
-        @Autowired
+    @Autowired
+    private BeverageService BeverageService;
+
+
+    @Autowired
         private StaffService staffService;
 
         @Autowired
@@ -36,6 +43,9 @@ public class Main {
         String[] beanDefinitionNames = annotatedClassApplicationContext.getBeanDefinitionNames();
         System.out.println(Arrays.toString(beanDefinitionNames));
         Main main = annotatedClassApplicationContext.getBean("main", Main.class);
+
+        List<Beverage> addresses = main.BeverageService.findAll();
+        addresses.stream().forEach(System.out::println);
 
 //        List<Integer> integers =Arrays.asList(14,25,346,547);
 //        Double  price = integers.stream().flatMapToDouble(number -> DoubleStream.of(Double.valueOf(number))).sum();
@@ -62,20 +72,15 @@ public class Main {
 //
 //        List<Staff> addresses = main.staffService.findAll();
 //        addresses.stream().forEach(System.out::println);
-//     main.staffService.deleteById(17L);
+//        main.staffService.deleteById(17L);
 
-        Staff staff = main.staffService.findById(19L).orElseGet(Staff::new);
-        System.out.println(staff);
+//        Staff staff = main.staffService.findById(19L).orElseGet(Staff::new);
+//        System.out.println(staff);
 //        Department depBar = Department.valueOf("bartender".toUpperCase());
 //        List<Staff> staff = main.staffRepository.findByDepartment(depBar);
 //        staff.stream().forEach(System.out::println);
 
-
-
 /*
-
-
-
         main.addressRepository.save(createAddress("17may", 45, 6));
         List<Address> addresses = main.addressRepository.findAll();
         addresses.stream().forEach(System.out::println);

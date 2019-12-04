@@ -19,6 +19,7 @@
         <org.postgresql.driver>42.2.8</org.postgresql.driver>
         <org.hibernate.core>5.4.4.Final</org.hibernate.core>
         <javax.servlet>4.0.1</javax.servlet>
+        <jackson.core>2.9.9</jackson.core>
         <org.thymeleaf>3.0.9.RELEASE</org.thymeleaf>
     </properties>
 
@@ -68,6 +69,16 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${org.hibernate.core}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.core}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.core}</version>
         </dependency>
     </dependencies>
 

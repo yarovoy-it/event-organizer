@@ -1,16 +1,14 @@
 package by.home.eventOrganizer.model.gds;
 
-import by.home.eventOrganizer.model.detail.Order;
-
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "beverages")
 public class Beverage extends GdsDetail {
 
-    @ManyToMany(mappedBy = "beverages")
-    private List<Order> orders;
+//    @ManyToMany(mappedBy = "beverages")
+//    private List<Order> orders;
 
     private Double volume;
 
@@ -22,11 +20,18 @@ public class Beverage extends GdsDetail {
         this.volume = volume;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
+//    public List<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(List<Order> orders) {
+//        this.orders = orders;
+//    }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    @Override
+    public String toString() {
+        return "Beverage{" +
+                "volume=" + volume +
+                "} " + super.toString();
     }
 }

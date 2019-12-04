@@ -2,7 +2,7 @@ package by.home.eventOrganizer.model.gds;
 
 import by.home.eventOrganizer.model.base.BaseEntity;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
 
 
 @MappedSuperclass
@@ -46,5 +46,15 @@ public abstract class GdsDetail extends BaseEntity {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "GdsDetail{" +
+                "name='" + name + '\'' +
+                ", count=" + count +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                "} " + super.toString();
     }
 }
