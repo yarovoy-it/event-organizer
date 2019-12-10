@@ -6,11 +6,13 @@ import by.home.eventOrganizer.repository.human.StaffRepository;
 import by.home.eventOrganizer.service.human.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class StaffServiceImpl implements StaffService {
 
     @Autowired
@@ -49,5 +51,20 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public List<Staff> findByDepartment(Department department) {
         return staffRepository.findByDepartment(department);
+    }
+
+    @Override
+    public Staff save(Staff staff) {
+        return staffRepository.save(staff);
+    }
+
+    @Override
+    public Staff update(Staff staff) {
+        return staffRepository.saveAndFlush(staff);
+    }
+
+    @Override
+    public void delete(Staff staff) {
+        staffRepository.delete(staff);
     }
 }

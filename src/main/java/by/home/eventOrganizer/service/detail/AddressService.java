@@ -13,4 +13,10 @@ public interface AddressService {
     Optional<Address> findById(Long id);
 
     List<Address> findAll();
+
+    Address update(Address address);
+
+    void delete(Address address);
+
+    void deleteById(Long id);
 }

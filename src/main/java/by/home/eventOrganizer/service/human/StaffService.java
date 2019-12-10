@@ -14,7 +14,7 @@ public interface StaffService {
 
 
     /**
-     * Find staff by address street list.
+     * Find by address street list.
      *
      * @param name the name
      * @return the list
@@ -22,7 +22,7 @@ public interface StaffService {
     List<Staff> findByAddress_Street(String name);
 
     /**
-     * Find staff by phone number list.
+     * Find by phone number list.
      *
      * @param number the number
      * @return the list
@@ -30,7 +30,7 @@ public interface StaffService {
     List<Staff> findByPhoneNumber(Long number);
 
     /**
-     * Find staff by name or surname list.
+     * Find by name or surname list.
      *
      * @param name    the name
      * @param surname the surname
@@ -39,7 +39,7 @@ public interface StaffService {
     List<Staff> findByNameOrSurname(String name, String surname);
 
     /**
-     * Find staff by id optional.
+     * Find by id optional.
      *
      * @param id the id
      * @return the optional
@@ -47,7 +47,7 @@ public interface StaffService {
     Optional<Staff> findById(Long id);
 
     /**
-     * Delete staff by id.
+     * Delete by id.
      *
      * @param id the id
      */
@@ -61,10 +61,34 @@ public interface StaffService {
     List<Staff> findAll();
 
     /**
-     * Find staff by department list.
+     * Find by department list.
      *
      * @param department the department
      * @return the list
      */
     List<Staff> findByDepartment(Department department);
+
+    /**
+     * Save staff.
+     *
+     * @param staff the staff
+     * @return the staff
+     */
+    Staff save(Staff staff);
+
+    /**
+     * Update staff.
+     *
+     * @param staff the staff
+     * @return the staff
+     */
+    Staff update(Staff staff);
+
+    /**
+     * Delete.
+     *
+     * @param staff the staff
+     */
+    void delete(Staff staff);
+
 }

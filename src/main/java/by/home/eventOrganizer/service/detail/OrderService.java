@@ -2,6 +2,7 @@ package by.home.eventOrganizer.service.detail;
 
 import by.home.eventOrganizer.model.detail.Order;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -10,18 +11,11 @@ import java.util.Optional;
 public interface OrderService {
 
     /**
-     * Save transient order and generate price based on staff, goods and beverage costs.
-     *
-     * @param order the order
-     */
-    void saveTransientOrder(Order order);
-
-    /**
      * Save.
      *
      * @param order the order
      */
-    void save(Order order);
+    Order save(Order order);
 
     /**
      * Find by id optional.
@@ -38,4 +32,12 @@ public interface OrderService {
      * @return the double
      */
     Double orderStaffSalaryByCustomerPhoneNumber(Long number);
+
+    List<Order> findAll();
+
+    Order update(Order order);
+
+    void delete(Order order);
+
+    void deleteById(Long id);
 }

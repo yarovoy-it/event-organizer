@@ -57,4 +57,28 @@ public interface CustomerService {
      * @param id the id
      */
     void deleteById(Long id);
+
+    /**
+     * Save customer.
+     *
+     * @param customer the customer
+     * @return the customer
+     */
+    Customer save(Customer customer);
+
+    /**
+     * Update customer.
+     *
+     * @param customer the customer
+     * @return the customer
+     */
+    Customer update(Customer customer);
+
+    /**
+     * Delete.
+     *
+     * @param customer the customer
+     */
+    void delete(Customer customer);
+
 }

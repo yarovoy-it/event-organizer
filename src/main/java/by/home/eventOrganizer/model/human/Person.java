@@ -59,7 +59,6 @@ public abstract class Person extends BaseEntity {
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", address=" + address +
                 "} " + super.toString();
     }
 }

@@ -22,8 +22,8 @@ public class Address extends BaseEntity {
 
     private Integer apartment;
 
-    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Person person;
+//    @OneToOne(mappedBy = "address")
+//    private Person person;
 
     @OneToOne(mappedBy = "address")
     private Order order;
@@ -36,13 +36,13 @@ public class Address extends BaseEntity {
         this.order = order;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+//    public Person getPerson() {
+//        return person;
+//    }
+//
+//    public void setPerson(Person person) {
+//        this.person = person;
+//    }
 
     public City getCity() {
         return city;

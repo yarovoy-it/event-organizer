@@ -3,18 +3,63 @@ package by.home.eventOrganizer.service.gds;
 import by.home.eventOrganizer.model.gds.Beverage;
 
 import java.util.List;
+import java.util.Optional;
 
+/**
+ * The interface Beverage service.
+ */
 public interface BeverageService {
 
+    /**
+     * Find by name list.
+     *
+     * @param name the name
+     * @return the list
+     */
+    List<Beverage> findByName(String name);
+
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     List<Beverage> findAll();
 
+    /**
+     * Find by id beverage.
+     *
+     * @param id the id
+     * @return the beverage
+     */
     Beverage findById(Long id);
 
-    Beverage save(Beverage role);
+    /**
+     * Save beverage.
+     *
+     * @param beverage the beverage
+     * @return the beverage
+     */
+    Beverage save(Beverage beverage);
 
-    Beverage update(Beverage role);
+    /**
+     * Update beverage.
+     *
+     * @param beverage the beverage
+     * @return the beverage
+     */
+    Beverage update(Beverage beverage);
 
-    void delete(Beverage role);
+    /**
+     * Delete.
+     *
+     * @param beverage the beverage
+     */
+    void delete(Beverage beverage);
 
+    /**
+     * Delete by id.
+     *
+     * @param id the id
+     */
     void deleteById(Long id);
 }

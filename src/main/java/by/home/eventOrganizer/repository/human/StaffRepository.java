@@ -19,5 +19,4 @@ public interface StaffRepository extends PersonRepository<Staff, Long> {
      */
     List<Staff> findByDepartment(Department department);
 
-
 }

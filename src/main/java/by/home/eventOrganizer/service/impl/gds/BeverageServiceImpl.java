@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,13 +18,18 @@ public class BeverageServiceImpl implements BeverageService {
     private BeverageRepository beverageRepository;
 
     @Override
+    public List<Beverage> findByName(String name) {
+        return beverageRepository.findByName(name);
+    }
+
+    @Override
     public List<Beverage> findAll() {
         return beverageRepository.findAll();
     }
 
     @Override
     public Beverage findById(Long id) {
-        return beverageRepository.findById(id).orElseThrow(() -> new RuntimeException("error.beverage.notExist"));
+        return beverageRepository.findById(id).orElseThrow(() -> new RuntimeException("error.role.notExist"));
     }
 
     @Override
