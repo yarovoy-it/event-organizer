@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -39,8 +38,8 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Optional<Staff> findById(Long id) {
-        return staffRepository.findById(id);
+    public Staff findById(Long id) {
+        return staffRepository.findById(id).orElseThrow(() -> new RuntimeException("error"));
     }
 
     @Override

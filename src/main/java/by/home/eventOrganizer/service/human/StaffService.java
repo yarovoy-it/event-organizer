@@ -4,7 +4,6 @@ import by.home.eventOrganizer.model.human.Staff;
 import by.home.eventOrganizer.model.human.enums.Department;
 
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -44,7 +43,7 @@ public interface StaffService {
      * @param id the id
      * @return the optional
      */
-    Optional<Staff> findById(Long id);
+    Staff findById(Long id);
 
     /**
      * Delete by id.

@@ -27,7 +27,7 @@ public class BeverageController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity<List<BeverageDto>> getAll() {
         final List<Beverage> beverages = beverageService.findAll();
         final List<BeverageDto> beverageDtoList = beverages.stream()
@@ -36,20 +36,20 @@ public class BeverageController {
         return new ResponseEntity<>(beverageDtoList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<BeverageDto> getOne(@PathVariable Long id) {
         final BeverageDto beverageDto = mapper.map(beverageService.findById(id), BeverageDto.class);
         return new ResponseEntity<>(beverageDto, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<BeverageDto> save(@Valid @RequestBody BeverageDto beverageDto) {
         beverageDto.setId(null);
         final BeverageDto responseBeverageDto = mapper.map(beverageService.save(mapper.map(beverageDto, Beverage.class)), BeverageDto.class);
         return new ResponseEntity<>(responseBeverageDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     public ResponseEntity<BeverageDto> update(@Valid @RequestBody BeverageDto beverageDto, @PathVariable Long id) {
         if (!Objects.equals(id, beverageDto.getId())) {
             throw new RuntimeException("controller.beverage.unexpectedId");
@@ -58,7 +58,7 @@ public class BeverageController {
         return new ResponseEntity<>(responseBeverageDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
         beverageService.deleteById(id);

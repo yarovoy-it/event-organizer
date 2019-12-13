@@ -27,7 +27,7 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity<List<AddressDto>> getAll(){
         final List<Address> addresses = addressService.findAll();
         final List<AddressDto> addressDtoList = addresses.stream()
@@ -36,20 +36,20 @@ public class AddressController {
         return new ResponseEntity<>(addressDtoList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<AddressDto> getOne(@PathVariable Long id) {
         final AddressDto addressDto = mapper.map(addressService.findById(id), AddressDto.class);
         return new ResponseEntity<>(addressDto, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<AddressDto> save(@Valid @RequestBody AddressDto addressDto) {
         addressDto.setId(null);
         final AddressDto responseAddressDto = mapper.map(addressService.save(mapper.map(addressDto, Address.class)), AddressDto.class);
         return new ResponseEntity<>(responseAddressDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     public ResponseEntity<AddressDto> update(@Valid @RequestBody AddressDto addressDto, @PathVariable Long id) {
         if (!Objects.equals(id, addressDto.getId())) {
             throw new RuntimeException("controller.address.unexpectedId");
@@ -58,7 +58,7 @@ public class AddressController {
         return new ResponseEntity<>(responseAddressDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
         addressService.deleteById(id);

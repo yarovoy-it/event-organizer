@@ -1,15 +1,25 @@
 package by.home.eventOrganizer.dto.human;
 
-import by.home.eventOrganizer.dto.detail.AddressDto;
 import by.home.eventOrganizer.dto.BaseDto;
+import by.home.eventOrganizer.dto.detail.AddressDto;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 public class PersonDto extends BaseDto {
 
+    @NotNull(message = "{person.name.notNull}")
+    @NotEmpty(message = "{person.name.notEmpty}")
+    @Size(min = 3, max = 50, message = "{person.name.size}")
     private String name;
 
     private String surname;
 
+    @NotNull(message = "{person.phoneNumber.notNull}")
+    @NotEmpty(message = "{person.phoneNumber.notEmpty}")
+    @Size(min = 3, max = 50, message = "{person.phoneNumber.size}")
     private Long phoneNumber;
 
     private AddressDto addressDto;

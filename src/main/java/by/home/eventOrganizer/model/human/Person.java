@@ -4,17 +4,26 @@ import by.home.eventOrganizer.model.base.BaseEntity;
 import by.home.eventOrganizer.model.detail.Address;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person extends BaseEntity {
 
     @Column(nullable = false)
+    @NotNull(message = "{person.name.notNull}")
+    @NotEmpty(message = "{person.name.notEmpty}")
+    @Size(min = 3, max = 50, message = "{person.name.size}")
     private String name;
 
     private String surname;
 
     @Column(name = "phone_number", nullable = false, unique = true)
+    @NotNull(message = "{person.phoneNumber.notNull}")
+    @NotEmpty(message = "{person.phoneNumber.notEmpty}")
+    @Size(min = 7, max = 10, message = "{person.name.size}")
     private Long phoneNumber;
 
     @OneToOne(fetch = FetchType.LAZY)

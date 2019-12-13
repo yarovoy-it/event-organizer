@@ -26,7 +26,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity<List<CustomerDto>> getAll() {
         final List<Customer> goodsAll = customerService.findAll();
         final List<CustomerDto> customerDtoList = goodsAll.stream()
@@ -35,20 +35,20 @@ public class CustomerController {
         return new ResponseEntity<>(customerDtoList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<CustomerDto> getOne(@PathVariable Long id) {
         final CustomerDto customerDto = mapper.map(customerService.findById(id), CustomerDto.class);
         return new ResponseEntity<>(customerDto, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<CustomerDto> save(@Valid @RequestBody CustomerDto customerDto) {
         customerDto.setId(null);
         final CustomerDto responseCustomerDto = mapper.map(customerService.save(mapper.map(customerDto , Customer.class)), CustomerDto.class);
         return new ResponseEntity<>(responseCustomerDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     public ResponseEntity<CustomerDto> update(@Valid @RequestBody CustomerDto customerDto, @PathVariable Long id) {
         if (!Objects.equals(id, customerDto.getId())) {
             throw new RuntimeException("controller.customer.unexpectedId");
@@ -57,7 +57,7 @@ public class CustomerController {
         return new ResponseEntity<>(responseCustomerDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
         customerService.deleteById(id);

@@ -26,7 +26,7 @@ public class GoodsController {
         this.goodsService = goodsService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity<List<GoodsDto>> getAll() {
         final List<Goods> goodsAll = goodsService.findAll();
         final List<GoodsDto> goodsDtoList = goodsAll.stream()
@@ -35,20 +35,20 @@ public class GoodsController {
         return new ResponseEntity<>(goodsDtoList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<GoodsDto> getOne(@PathVariable Long id) {
         final GoodsDto beverageDto = mapper.map(goodsService.findById(id), GoodsDto.class);
         return new ResponseEntity<>(beverageDto, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<GoodsDto> save(@Valid @RequestBody GoodsDto goodsDto) {
         goodsDto.setId(null);
         final GoodsDto responseGoodsDto = mapper.map(goodsService.save(mapper.map(goodsDto, Goods.class)), GoodsDto.class);
         return new ResponseEntity<>(responseGoodsDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     public ResponseEntity<GoodsDto> update(@Valid @RequestBody GoodsDto goodsDto, @PathVariable Long id) {
         if (!Objects.equals(id, goodsDto.getId())) {
             throw new RuntimeException("controller.goods.unexpectedId");
@@ -57,7 +57,7 @@ public class GoodsController {
         return new ResponseEntity<>(responseGoodsDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {
         goodsService.deleteById(id);
