@@ -23,6 +23,7 @@ public interface PersonRepository<T extends Person, ID> extends JpaRepository<T,
      */
     List<T> findByNameOrSurname(String name, String surname);
 
+
     /**
      * Find abstract person by address street list.
      *

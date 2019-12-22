@@ -45,7 +45,7 @@ public class StaffController {
 
     @GetMapping
     public ResponseEntity<List<StaffDto>> getAll() {
-        final List<Staff> staffAll = staffService.findAll();
+        final List<Staff> staffAll = staffService.findAllWithFetch();
         final List<StaffDto> staffDtoList = staffAll.stream()
                 .map((staff) -> mapper.map(staff, StaffDto.class))
                 .collect(Collectors.toList());

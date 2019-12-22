@@ -8,7 +8,17 @@ public class GdsDetailDto extends BaseDto {
 
     private String type;
 
+    private String count;
+
     private Double price;
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
 
     public String getName() {
         return name;

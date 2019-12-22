@@ -22,7 +22,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     /**
      * Order price by customer phone number double.
-     *
+     * sql language
      * @param phoneNumber the phone number
      * @return the double
      */
@@ -32,4 +32,21 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             "join customers cust on cust.id = ord.customer_id) " +
             "where cust.phone_number = :phnumber", nativeQuery = true)
     Double orderPriceByCustomerPhoneNumber(@Param("phnumber") Long phoneNumber);
+
+    @Query("SELECT o FROM Order o " +
+            "JOIN FETCH o.address  " +
+            "JOIN FETCH o.customer JOIN FETCH o.goods " +
+            "JOIN FETCH o.beverages " +
+            "JOIN FETCH o.staff")
+    List<Order> findAllWithFetches();
+
+    @Query("SELECT o FROM Order o " +
+            "JOIN FETCH o.address " +
+            "JOIN FETCH o.customer " +
+            "JOIN FETCH o.customer " +
+            "JOIN FETCH o.goods " +
+            "JOIN FETCH o.beverages " +
+            "JOIN FETCH o.staff " +
+            "where o.id= :id")
+    Order findByIdWithFetches(@Param("id") Long id);
 }

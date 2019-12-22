@@ -3,13 +3,13 @@ package by.home.eventOrganizer.app;
 import by.home.eventOrganizer.config.AppConfiguration;
 import by.home.eventOrganizer.model.detail.Address;
 import by.home.eventOrganizer.model.detail.enums.City;
-import by.home.eventOrganizer.model.gds.Beverage;
 import by.home.eventOrganizer.model.human.Customer;
 import by.home.eventOrganizer.model.human.Staff;
 import by.home.eventOrganizer.model.human.enums.Department;
 import by.home.eventOrganizer.service.detail.AddressService;
 import by.home.eventOrganizer.service.detail.OrderService;
 import by.home.eventOrganizer.service.gds.BeverageService;
+import by.home.eventOrganizer.service.gds.GoodsService;
 import by.home.eventOrganizer.service.human.CustomerService;
 import by.home.eventOrganizer.service.human.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class Main {
 
     @Autowired
-    private BeverageService BeverageService;
+    private GoodsService goodsService;
 
+    @Autowired
+    private BeverageService beverageService;
 
     @Autowired
         private StaffService staffService;
@@ -44,8 +45,24 @@ public class Main {
         System.out.println(Arrays.toString(beanDefinitionNames));
         Main main = annotatedClassApplicationContext.getBean("main", Main.class);
 
-        List<Beverage> addresses = main.BeverageService.findAll();
-        addresses.stream().forEach(System.out::println);
+//        Order order = main.orderService.findById(61L);
+//
+//        Beverage beverage1 = main.beverageService.getByIdWithCount(43L,15);
+//        Beverage beverage2 = main.beverageService.getByIdWithCount(49L,10);
+//        List<Beverage> beverages = null;
+//        beverages.add(beverage1);
+//        beverages.add(beverage2);
+//        order.setBeverages(beverages);
+//
+//        Goods goods1 = main.goodsService.findById(29L);
+//        order.setGoods((List<Goods>) goods1);
+//
+//        LocalDate ld = LocalDate.now();
+//        order.setExecuteDate(ld.plusDays(25));
+//        order.setDescription("nice and sexy");
+//
+//        main.orderService.save(order);
+
 
 //        List<Integer> integers =Arrays.asList(14,25,346,547);
 //        Double  price = integers.stream().flatMapToDouble(number -> DoubleStream.of(Double.valueOf(number))).sum();

@@ -2,10 +2,11 @@ package by.home.eventOrganizer.dto.human;
 
 import by.home.eventOrganizer.dto.detail.OrderDto;
 import by.home.eventOrganizer.model.human.enums.Department;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class StaffDto extends PersonDto{
 
     private Department department;

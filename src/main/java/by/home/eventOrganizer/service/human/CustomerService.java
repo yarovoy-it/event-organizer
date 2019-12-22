@@ -3,7 +3,6 @@ package by.home.eventOrganizer.service.human;
 import by.home.eventOrganizer.model.human.Customer;
 
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -17,6 +16,14 @@ public interface CustomerService {
      * @return the list
      */
     List<Customer> findAll();
+
+    /**
+     * Find all with fetch address.
+     * used JPQL
+     *
+     * @return the list of customers
+     */
+    List<Customer> findAllWithFetch();
 
     /**
      * Find customer by address street list.
@@ -49,7 +56,7 @@ public interface CustomerService {
      * @param id the id
      * @return the optional
      */
-    Optional<Customer> findById(Long id);
+    Customer findById(Long id);
 
     /**
      * Delete customer by id.

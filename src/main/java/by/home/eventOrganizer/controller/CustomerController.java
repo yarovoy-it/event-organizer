@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -28,7 +29,7 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<List<CustomerDto>> getAll() {
-        final List<Customer> goodsAll = customerService.findAll();
+        final List<Customer> goodsAll = customerService.findAllWithFetch();
         final List<CustomerDto> customerDtoList = goodsAll.stream()
                 .map((goods) -> mapper.map(goods, CustomerDto.class))
                 .collect(Collectors.toList());
@@ -42,8 +43,10 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerDto> save(@Valid @RequestBody CustomerDto customerDto) {
+    public ResponseEntity<CustomerDto> save(@Valid @RequestBody @NotNull CustomerDto customerDto) {
         customerDto.setId(null);
+        customerDto.getAddress().setId(null);
+        Customer customer = mapper.map(customerDto, Customer.class);
         final CustomerDto responseCustomerDto = mapper.map(customerService.save(mapper.map(customerDto , Customer.class)), CustomerDto.class);
         return new ResponseEntity<>(responseCustomerDto, HttpStatus.OK);
     }

@@ -25,6 +25,17 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public Goods getByIdWithCount(Long id, Integer count) {
+        Goods goods = goodsRepository.findById(id).orElseThrow(() -> new RuntimeException("error.goods.notExist"));
+        if (count != null) {
+            goods.setCount(count);
+            return goodsRepository.saveAndFlush(goods);
+        } else {
+            throw new RuntimeException("We can`t set null on " + goods.getName());
+        }
+    }
+
+    @Override
     public Goods save(Goods goods) {
         return goodsRepository.save(goods);
     }

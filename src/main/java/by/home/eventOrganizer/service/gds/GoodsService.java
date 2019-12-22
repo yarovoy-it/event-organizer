@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface GoodsService {
 
+    Goods getByIdWithCount(Long id, Integer count);
+
     /**
      * Find all list.
      *

@@ -5,13 +5,10 @@ import by.home.eventOrganizer.repository.human.CustomerRepository;
 import by.home.eventOrganizer.service.human.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@Transactional
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
@@ -20,6 +17,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
+    }
+
+    @Override
+    public List<Customer> findAllWithFetch() {
+        return customerRepository.findAllWithFetch();
     }
 
     @Override
@@ -38,8 +40,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional<Customer> findById(Long id) {
-        return customerRepository.findById(id);
+    public Customer findById(Long id) {
+        return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("problem with customer"));
     }
 
     @Override

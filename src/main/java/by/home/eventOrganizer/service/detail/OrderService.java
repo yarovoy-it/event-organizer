@@ -3,12 +3,15 @@ package by.home.eventOrganizer.service.detail;
 import by.home.eventOrganizer.model.detail.Order;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The interface Order service.
  */
 public interface OrderService {
+
+    Order findByIdWithFetches(Long id);
+
+    List<Order> findAllWithFetches();
 
     /**
      * Save.
@@ -23,7 +26,7 @@ public interface OrderService {
      * @param id the id
      * @return the optional
      */
-    Optional<Order> findById(Long id);
+    Order findById(Long id);
 
     /**
      * Order price by customer phone number double.

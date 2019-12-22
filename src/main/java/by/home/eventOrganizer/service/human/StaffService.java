@@ -59,6 +59,15 @@ public interface StaffService {
      */
     List<Staff> findAll();
 
+
+    /**
+     * Find all with fetch address.
+     * used JPQL
+     *
+     * @return the list of staff
+     */
+    List<Staff> findAllWithFetch();
+
     /**
      * Find by department list.
      *

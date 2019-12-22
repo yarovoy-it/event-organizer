@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.DoubleStream;
 
 @Service
 @Transactional
@@ -23,13 +21,23 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.saveAndFlush(order);  }
 
     @Override
-    public Optional<Order> findById(Long id) {
-        return orderRepository.findById(id);
+    public Order findById(Long id) {
+        return orderRepository.findById(id).orElseThrow(() -> new RuntimeException("error.order.notExist"));
     }
 
     @Override
     public Double orderStaffSalaryByCustomerPhoneNumber(Long number) {
         return orderRepository.orderPriceByCustomerPhoneNumber(number);
+    }
+
+    @Override
+    public Order findByIdWithFetches(Long id) {
+        return orderRepository.findByIdWithFetches(id);
+    }
+
+    @Override
+    public List<Order> findAllWithFetches() {
+        return orderRepository.findAllWithFetches();
     }
 
     @Override

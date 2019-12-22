@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,7 +28,7 @@ public class BeverageServiceImpl implements BeverageService {
 
     @Override
     public Beverage findById(Long id) {
-        return beverageRepository.findById(id).orElseThrow(() -> new RuntimeException("error.role.notExist"));
+        return beverageRepository.findById(id).orElseThrow(() -> new RuntimeException("error.beverage.notExist"));
     }
 
     @Override
@@ -40,6 +39,17 @@ public class BeverageServiceImpl implements BeverageService {
     @Override
     public Beverage update(Beverage beverage) {
         return beverageRepository.saveAndFlush(beverage);
+    }
+
+    @Override
+    public Beverage getByIdWithCount(Long id, Integer count) {
+        Beverage beverage = beverageRepository.findById(id).orElseThrow(() -> new RuntimeException("error.beverage.notExist"));
+        if (count != null) {
+            beverage.setCount(count);
+            return beverageRepository.saveAndFlush(beverage);
+        } else {
+            throw new RuntimeException("We can`t set null on " + beverage.getName());
+        }
     }
 
     @Override

@@ -23,6 +23,12 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
+    public List<Staff> findAllWithFetch() {
+        List<Staff> staff = staffRepository.findAllWithFetch();
+        return staff;
+    }
+
+    @Override
     public List<Staff> findByAddress_Street(String name) {
         return staffRepository.findByAddress_Street(name);
     }

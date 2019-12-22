@@ -18,18 +18,16 @@ public class PersonDto extends BaseDto {
     private String surname;
 
     @NotNull(message = "{person.phoneNumber.notNull}")
-    @NotEmpty(message = "{person.phoneNumber.notEmpty}")
-    @Size(min = 3, max = 50, message = "{person.phoneNumber.size}")
     private Long phoneNumber;
 
-    private AddressDto addressDto;
+    private AddressDto address;
 
-    public AddressDto getAddressDto() {
-        return addressDto;
+    public AddressDto getAddress() {
+        return address;
     }
 
-    public void setAddressDto(AddressDto addressDto) {
-        this.addressDto = addressDto;
+    public void setAddress(AddressDto address) {
+        this.address = address;
     }
 
     public String getName() {

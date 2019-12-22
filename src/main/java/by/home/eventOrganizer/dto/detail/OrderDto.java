@@ -6,58 +6,58 @@ import by.home.eventOrganizer.dto.gds.GoodsDto;
 import by.home.eventOrganizer.dto.human.CustomerDto;
 import by.home.eventOrganizer.dto.human.StaffDto;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
+
 public class OrderDto extends BaseDto {
 
-    private List<GoodsDto> goodsDtoList;
+    private List<GoodsDto> goods;
 
-    private List<BeverageDto> beverageDtoList;
+    private List<BeverageDto> beverages;
 
-    private Set<StaffDto> staffDtoSet;
+    private Set<StaffDto> staff;
 
-    private CustomerDto customerDto;
+    private CustomerDto customer;
 
     private String description;
 
     private Double price;
 
-    private LocalDate executeDate;
+    private String executeDate;
 
-    private AddressDto addressDto;
+    private AddressDto address;
 
-    public List<GoodsDto> getGoodsDtoList() {
-        return goodsDtoList;
+    public List<GoodsDto> getGoods() {
+        return goods;
     }
 
-    public void setGoodsDtoList(List<GoodsDto> goodsDtoList) {
-        this.goodsDtoList = goodsDtoList;
+    public void setGoods(List<GoodsDto> goods) {
+        this.goods = goods;
     }
 
-    public List<BeverageDto> getBeverageDtoList() {
-        return beverageDtoList;
+    public List<BeverageDto> getBeverages() {
+        return beverages;
     }
 
-    public void setBeverageDtoList(List<BeverageDto> beverageDtoList) {
-        this.beverageDtoList = beverageDtoList;
+    public void setBeverages(List<BeverageDto> beverages) {
+        this.beverages = beverages;
     }
 
-    public Set<StaffDto> getStaffDtoSet() {
-        return staffDtoSet;
+    public Set<StaffDto> getStaff() {
+        return staff;
     }
 
-    public void setStaffDtoSet(Set<StaffDto> staffDtoSet) {
-        this.staffDtoSet = staffDtoSet;
+    public void setStaff(Set<StaffDto> staff) {
+        this.staff = staff;
     }
 
-    public CustomerDto getCustomerDto() {
-        return customerDto;
+    public CustomerDto getCustomer() {
+        return customer;
     }
 
-    public void setCustomerDto(CustomerDto customerDto) {
-        this.customerDto = customerDto;
+    public void setCustomer(CustomerDto customer) {
+        this.customer = customer;
     }
 
     public String getDescription() {
@@ -76,19 +76,19 @@ public class OrderDto extends BaseDto {
         this.price = price;
     }
 
-    public LocalDate getExecuteDate() {
+    public String getExecuteDate() {
         return executeDate;
     }
 
-    public void setExecuteDate(LocalDate executeDate) {
+    public void setExecuteDate(String executeDate) {
         this.executeDate = executeDate;
     }
 
-    public AddressDto getAddressDto() {
-        return addressDto;
+    public AddressDto getAddress() {
+        return address;
     }
 
-    public void setAddressDto(AddressDto addressDto) {
-        this.addressDto = addressDto;
+    public void setAddress(AddressDto address) {
+        this.address = address;
     }
 }

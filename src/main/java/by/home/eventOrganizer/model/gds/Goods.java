@@ -5,20 +5,20 @@ import by.home.eventOrganizer.model.detail.Order;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "goods")
 public class Goods extends GdsDetail {
 
     @ManyToMany(mappedBy = "goods")
-    private List<Order> orders;
+    private Set<Order> orders;
 
-    public List<Order> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
 }

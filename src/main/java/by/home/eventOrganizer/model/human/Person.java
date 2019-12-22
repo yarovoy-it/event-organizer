@@ -22,11 +22,9 @@ public abstract class Person extends BaseEntity {
 
     @Column(name = "phone_number", nullable = false, unique = true)
     @NotNull(message = "{person.phoneNumber.notNull}")
-    @NotEmpty(message = "{person.phoneNumber.notEmpty}")
-    @Size(min = 7, max = 10, message = "{person.name.size}")
     private Long phoneNumber;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id", unique = true)
     private Address address;
 

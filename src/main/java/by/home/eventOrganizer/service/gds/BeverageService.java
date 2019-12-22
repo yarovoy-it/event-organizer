@@ -3,7 +3,6 @@ package by.home.eventOrganizer.service.gds;
 import by.home.eventOrganizer.model.gds.Beverage;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The interface Beverage service.
@@ -48,6 +47,9 @@ public interface BeverageService {
      * @return the beverage
      */
     Beverage update(Beverage beverage);
+
+
+    Beverage getByIdWithCount(Long id, Integer count);
 
     /**
      * Delete.
