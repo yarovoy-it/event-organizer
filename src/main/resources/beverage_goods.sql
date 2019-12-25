@@ -1,3 +1,13 @@
+if not exists CREATE TABLE public.goods
+(
+    id bigint NOT NULL,
+    count integer,
+    name character varying(255) COLLATE pg_catalog."default",
+    price double precision,
+    type character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT goods_pkey PRIMARY KEY (id)
+);
+
 INSERT INTO goods (id, name, count, type, price) VALUES
 (28, 'Plastic', 100, 'Table', 15.00),
 
@@ -20,6 +30,16 @@ INSERT INTO goods (id, name, count, type, price) VALUES
 (41, 'Luval',700, 'Plate', 0.70),
 (42, 'Arcoroc', 1500, 'Glass', 0.25);
 
+if not exists CREATE TABLE public.beverages
+(
+    id bigint NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    type character varying(255) COLLATE pg_catalog."default",
+    count integer NOT NULL,
+    price double precision,
+    volume double precision NOT NULL,
+    CONSTRAINT beverages_pkey PRIMARY KEY (id)
+);
 
 INSERT INTO beverages (id, name, count, type, price, volume) VALUES
 (43, 'Highland Park', 70, 'Whisky', 100.0, 1.0),

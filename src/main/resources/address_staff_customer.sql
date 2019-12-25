@@ -1,3 +1,13 @@
+if not exists CREATE TABLE public.addresses
+(
+    id bigint NOT NULL,
+    apartment integer,
+    city character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    house_number integer NOT NULL,
+    street character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT addresses_pkey PRIMARY KEY (id)
+);
+
 DELETE  FROM addresses;
 ALTER SEQUENCE hibernate_sequence RESTART WITH 1;
 
@@ -14,6 +24,21 @@ INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (10,'GROD
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (11,'GRODNO', 'Sovetskaia', 123, 28);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (12,'GRODNO', 'Sovetskaia', 13, 104);
 
+if not exists CREATE TABLE public.staff
+(
+    id bigint NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    phone_number bigint NOT NULL,
+    surname character varying(255) COLLATE pg_catalog."default",
+    department character varying(255) COLLATE pg_catalog."default",
+    salary double precision,
+    address_id bigint,
+    CONSTRAINT staff_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_staff_address FOREIGN KEY (address_id)
+        REFERENCES public.addresses (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
 VALUES (18, 'Vasia', 375297642865,'Vasichkin', 2, 'BARTENDER', 20.00);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
@@ -24,6 +49,22 @@ INSERT INTO staff (id, name, phone_number, surname, address_id, department , sal
 VALUES (21, 'Dima', 375297562423,'Pypkin', 3, 'BARTENDER', 25.00);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
 VALUES (22, 'Denis', 375297863695,'Lusevech', 5, 'CLEANER', 30.00);
+
+if not exists CREATE TABLE public.customers
+(
+    id bigint NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    phone_number bigint NOT NULL,
+    surname character varying(255) COLLATE pg_catalog."default",
+    summa double precision,
+    discount integer,
+    address_id bigint,
+    CONSTRAINT customers_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_customer_address FOREIGN KEY (address_id)
+        REFERENCES public.addresses (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
 
 INSERT INTO customers (id, name, phone_number, surname, address_id, discount ,summa)
 VALUES (23, 'Petia', 375337835746,'Petichkin', 4, 0 , 0);
