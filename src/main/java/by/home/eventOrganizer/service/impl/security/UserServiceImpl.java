@@ -35,13 +35,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByName(String name) {
-        return userRepository.findByName(name);
+        return userRepository.findByUsername(name);
     }
 
     @Override
     public User save(User user) {
         validate(user.getId() != null, "error.user.notHaveId");
-        validate(userRepository.existsByName(user.getLogin()), "error.user.notUniqueLogin");
+        validate(userRepository.existsByUsername(user.getUsername()), "error.user.notUniqueLogin");
         return saveAndFlush(user);
     }
 
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public User update(User user) {
         final Long id = user.getId();
         validate(id == null, "error.user.haveId");
-        final User duplicateUser = userRepository.findByName(user.getLogin());
+        final User duplicateUser = userRepository.findByUsername(user.getUsername());
         final boolean isDuplicateExists = duplicateUser != null && !Objects.equals(duplicateUser.getId(), id);
         validate(isDuplicateExists, "error.user.name.notUnique");
         findById(id);

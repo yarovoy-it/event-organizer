@@ -1,6 +1,9 @@
 package by.home.eventOrganizer.security.filter;
 
+import by.home.eventOrganizer.dto.ErrorResponseDto;
 import by.home.eventOrganizer.service.security.TokenService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,28 +22,35 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
     private static final String AUTHORIZATION = "Authorization";
     private static final String BEARER = "Bearer ";
 
-    //TODO dont know bill be work with mod final
-    private final TokenService tokenService;
-    private final UserDetailsService userDetailsService;
+
+    private TokenService tokenService;
+    private UserDetailsService userDetailsService;
 
     public AuthenticationTokenFilter(TokenService tokenService, UserDetailsService userDetailsService) {
         this.tokenService = tokenService;
         this.userDetailsService = userDetailsService;
     }
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = getToken(request);
-        if (token != null && tokenService.validate(token)) {
-            String username = tokenService.extractUsername(token);
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            String token = getToken(request);
+            if (token != null && tokenService.validate(token)) {
+                String username = tokenService.extractUsername(token);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+            filterChain.doFilter(request, response);
+        } catch (Exception e) {
+            ErrorResponseDto errorResponseDto = new ErrorResponseDto(HttpStatus.BAD_REQUEST, e.getMessage());
+            response.setStatus(errorResponseDto.getHttpStatus().value());
+            response.setContentType("application/json");
+            new ObjectMapper().writeValue(response.getWriter(), errorResponseDto);
         }
-        filterChain.doFilter(request, response);
     }
+
 
     private String getToken(HttpServletRequest request) {
         String authHeader = request.getHeader(AUTHORIZATION);

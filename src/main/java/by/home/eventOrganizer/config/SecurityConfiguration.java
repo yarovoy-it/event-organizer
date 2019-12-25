@@ -9,12 +9,16 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    private static final String USER = "USER";
+    private static final String ADMIN = "ADMIN";
 
     private final TokenService tokenService;
 
@@ -27,18 +31,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Override
-    public AuthenticationManager authenticationManager() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .cors()
                 .and()
                 .authorizeRequests()
                 .mvcMatchers("/authentication/**").permitAll()
-                .mvcMatchers(HttpMethod.GET, "/roles/**", "/users/**").hasAnyRole("ADMIN", "USER")
-                .anyRequest().hasRole("ADMIN");
-        http.addFilterBefore(new AuthenticationTokenFilter(tokenService, userDetailsService), UsernamePasswordAuthenticationFilter.class);
+                .mvcMatchers(HttpMethod.GET, "/beverages/**").permitAll()
+                .mvcMatchers(HttpMethod.GET, "/staff/**").permitAll()
+                .mvcMatchers(HttpMethod.GET, "/orders/**").hasAnyRole(USER, ADMIN)
+                .mvcMatchers(HttpMethod.POST, "/customers/**").hasAnyRole(USER, ADMIN)
+                .mvcMatchers(HttpMethod.POST, "/beverages/**", "/staff/**", "/goods/**").hasRole(ADMIN)
+                .mvcMatchers(HttpMethod.PUT, "/beverages/**", "/staff/**", "/goods/**").hasRole(ADMIN)
+                .mvcMatchers(HttpMethod.DELETE, "/beverages/**", "/staff/**", "/goods/**").hasRole(ADMIN);
+        final AuthenticationTokenFilter filter = new AuthenticationTokenFilter(tokenService, userDetailsService);
+        http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
     }
+
+
 }

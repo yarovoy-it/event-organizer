@@ -40,10 +40,10 @@ public class DatabaseConfiguration {
         driver.setUrl(url);
         driver.setUsername(userName);
         driver.setPassword(password);
-/*
 
+/*
         //for fill database
-        Resource initSchema = new ClassPathResource("schema.sql");
+        Resource initSchema = new ClassPathResource("roles.sql");
         DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initSchema);
         DatabasePopulatorUtils.execute(databasePopulator, driver);
 */

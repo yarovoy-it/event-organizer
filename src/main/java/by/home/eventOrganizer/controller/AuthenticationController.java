@@ -12,7 +12,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 import java.util.Set;
@@ -39,9 +42,9 @@ public class AuthenticationController {
         this.authenticationManager = authenticationManager;
     }
 
-    @GetMapping("/signIn")
-    public TokenResponseDto authnricateUser(@RequestParam String username, @RequestParam String password) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+    @PostMapping("/signIn")
+    public TokenResponseDto authenticateUser(@RequestBody UserRegistrationRequestDto userRegistrationRequestDto) {
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userRegistrationRequestDto.getUsername(), userRegistrationRequestDto.getPassword());
         Authentication authentication = authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new TokenResponseDto(tokenService.generate(authentication));
@@ -50,7 +53,7 @@ public class AuthenticationController {
     @PostMapping("/signUp")
     public User registerUser(@RequestBody UserRegistrationRequestDto userRegistrationRequestDto) {
         final User user = new User();
-        user.setLogin(userRegistrationRequestDto.getLogin());
+        user.setUsername(userRegistrationRequestDto.getUsername());
         user.setPassword(encoder.encode(userRegistrationRequestDto.getPassword()));
         final Set<Role> roles = userRegistrationRequestDto.getRoles().stream()
                 .map(name -> roleService.findByName(name))

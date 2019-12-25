@@ -21,13 +21,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userService = userService;
     }
 
-    //TODO will not work because fetch type lazy and cant reach roles from users
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final User user = userService.findByName(username);
         final Set<SimpleGrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toSet());
-        return new AuthenticationUserDetails(user.getId(), user.getLogin(), user.getPassword(), authorities);
+        return new AuthenticationUserDetails(user.getId(), user.getUsername(), user.getPassword(), authorities);
     }
 }

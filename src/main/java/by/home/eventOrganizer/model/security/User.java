@@ -11,14 +11,14 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(unique = true, nullable = false)
-    @NotNull(message = "{user.name.notNull}")
-    @NotEmpty(message = "{user.name.notEmpty}")
-    @Size(min = 3, max = 50, message = "{user.name.size}")
-    private String login;
+    @NotNull(message = "{user.username.notNull}")
+    @NotEmpty(message = "{user.username.notEmpty}")
+    @Size(min = 3, max = 50, message = "{user.username.size}")
+    private String username;
 
     @Column(nullable = false)
     @NotNull(message = "{user.password.notNull}")
@@ -41,12 +41,12 @@ public class User {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

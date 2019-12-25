@@ -21,7 +21,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByCustomer_PhoneNumber(Long phoneNumber);
 
     /**
-     * Order price by customer phone number double.
+     * Order salary only for staff by customer by phone number double.
      * sql language
      * @param phoneNumber the phone number
      * @return the double
@@ -35,7 +35,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o " +
             "JOIN FETCH o.address  " +
-            "JOIN FETCH o.customer JOIN FETCH o.goods " +
+            "JOIN FETCH o.customer " +
+            "JOIN FETCH o.goods " +
             "JOIN FETCH o.beverages " +
             "JOIN FETCH o.staff")
     List<Order> findAllWithFetches();

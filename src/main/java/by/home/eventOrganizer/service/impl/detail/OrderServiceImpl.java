@@ -1,6 +1,8 @@
 package by.home.eventOrganizer.service.impl.detail;
 
 import by.home.eventOrganizer.model.detail.Order;
+import by.home.eventOrganizer.model.gds.Beverage;
+import by.home.eventOrganizer.model.human.Staff;
 import by.home.eventOrganizer.repository.detail.OrderRepository;
 import by.home.eventOrganizer.service.detail.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -32,7 +35,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findByIdWithFetches(Long id) {
-        return orderRepository.findByIdWithFetches(id);
+        Order order = orderRepository.findByIdWithFetches(id);
+        if (order.getStaff() == null) {
+            order.setStaff((Set<Staff>) new Staff());
+        } else if (order.getBeverages() == null) {
+            order.setBeverages((Set<Beverage>) new Beverage());
+        }
+        return order;
     }
 
     @Override

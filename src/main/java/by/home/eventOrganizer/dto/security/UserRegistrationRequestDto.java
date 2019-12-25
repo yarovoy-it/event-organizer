@@ -7,10 +7,10 @@ import java.util.Set;
 
 public class UserRegistrationRequestDto {
 
-    @NotNull(message = "{user.login.notNull}")
-    @NotEmpty(message = "{user.login.notEmpty}")
-    @Size(min = 3, max = 50, message = "{user.name.size}")
-    private String login;
+    @NotNull(message = "{user.username.notNull}")
+    @NotEmpty(message = "{user.username.notEmpty}")
+    @Size(min = 3, max = 50, message = "{user.username.size}")
+    private String username;
 
     @NotNull(message = "{user.password.notNull}")
     @NotEmpty(message = "{user.password.notEmpty}")
@@ -20,12 +20,12 @@ public class UserRegistrationRequestDto {
     @NotNull(message = "{user.roles.notNull}")
     private Set<String> roles;
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @ComponentScan("by.home.eventOrganizer")
-@Import({DatabaseConfiguration.class, WebConfiguration.class})
+@Import({DatabaseConfiguration.class, WebConfiguration.class, SecurityConfiguration.class})
 public class AppConfiguration {
 
 

@@ -75,7 +75,7 @@ public class TokenServiceImpl implements TokenService {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION_MILLIS))
-                .signWith(SignatureAlgorithm.ES512, JWT_SECRET)
+                .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
     }
 
