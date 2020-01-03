@@ -14,19 +14,19 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order extends BaseEntity {
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "orders_goods",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "goods_id")})
     private Set<Goods> goods;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "orders_beverages",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "beverage_id")})
     private Set<Beverage> beverages;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "orders_staff",
             joinColumns = {@JoinColumn(name ="order_id")},
             inverseJoinColumns = {@JoinColumn(name="staff_id")})
@@ -111,7 +111,7 @@ public class Order extends BaseEntity {
     public void setExecuteDate(LocalDate executeDate) {
         this.executeDate = executeDate;
     }
-
+/*
     @Override
     public String toString() {
         return "Order{" +
@@ -125,4 +125,6 @@ public class Order extends BaseEntity {
                 ", address=" + address +
                 "} " + super.toString();
     }
+
+ */
 }

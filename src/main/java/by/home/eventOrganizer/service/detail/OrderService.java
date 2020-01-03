@@ -9,9 +9,11 @@ import java.util.List;
  */
 public interface OrderService {
 
-    Order findByIdWithFetches(Long id);
+    Order getSumOfOrderById(Long id);
 
     List<Order> findAllWithFetches();
+
+    boolean existsById(Long id);
 
     /**
      * Save.

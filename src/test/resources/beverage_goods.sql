@@ -2,9 +2,9 @@ CREATE TABLE IF NOT EXISTS public.goods
 (
     id bigint NOT NULL,
     count integer,
-    name character varying(255) COLLATE pg_catalog."default",
+    name character varying(255),
     price double precision,
-    type character varying(255) COLLATE pg_catalog."default",
+    type character varying(255),
     CONSTRAINT goods_pkey PRIMARY KEY (id)
 );
 
@@ -33,8 +33,8 @@ INSERT INTO goods (id, name, count, type, price) VALUES
 CREATE TABLE IF NOT EXISTS public.beverages
 (
     id bigint NOT NULL,
-    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    type character varying(255) COLLATE pg_catalog."default",
+    name character varying(255) NOT NULL,
+    type character varying(255) ,
     count integer NOT NULL,
     price double precision,
     volume double precision NOT NULL,

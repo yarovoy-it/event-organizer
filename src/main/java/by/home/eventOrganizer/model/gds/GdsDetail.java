@@ -6,7 +6,7 @@ import javax.persistence.MappedSuperclass;
 
 
 @MappedSuperclass
-public abstract class GdsDetail extends BaseEntity {
+public abstract class GdsDetail extends BaseEntity implements Cloneable {
 
     private String name;
 
@@ -15,6 +15,17 @@ public abstract class GdsDetail extends BaseEntity {
     private String type;
 
     private Double price;
+
+    public GdsDetail() {
+
+    }
+
+    public GdsDetail(String name, Integer count, String type, Double price) {
+        this.name = name;
+        this.count = count;
+        this.type = type;
+        this.price = price;
+    }
 
     public String getName() {
         return name;

@@ -47,9 +47,10 @@ public class OrderController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<OrderDto> getOne(@PathVariable Long id) {
-        final OrderDto staffDto = mapper.map(orderService.findByIdWithFetches(id), OrderDto.class);
+        final OrderDto staffDto = mapper.map(orderService.findById(id), OrderDto.class);
         return new ResponseEntity<>(staffDto, HttpStatus.OK);
     }
+
 
     @PostMapping
     public ResponseEntity<OrderDto> save(@Valid @RequestBody OrderDto orderDto) {

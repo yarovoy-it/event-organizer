@@ -4,7 +4,7 @@ import by.home.eventOrganizer.dto.BaseDto;
 import by.home.eventOrganizer.dto.gds.BeverageDto;
 import by.home.eventOrganizer.dto.gds.GoodsDto;
 import by.home.eventOrganizer.dto.human.CustomerDto;
-import by.home.eventOrganizer.dto.human.StaffDto;
+import by.home.eventOrganizer.dto.human.StaffWithoutAddressDto;
 
 import java.util.List;
 import java.util.Set;
@@ -16,7 +16,7 @@ public class OrderDto extends BaseDto {
 
     private List<BeverageDto> beverages;
 
-    private Set<StaffDto> staff;
+    private Set<StaffWithoutAddressDto> staff;
 
     private CustomerDto customer;
 
@@ -44,11 +44,11 @@ public class OrderDto extends BaseDto {
         this.beverages = beverages;
     }
 
-    public Set<StaffDto> getStaff() {
+    public Set<StaffWithoutAddressDto> getStaff() {
         return staff;
     }
 
-    public void setStaff(Set<StaffDto> staff) {
+    public void setStaff(Set<StaffWithoutAddressDto> staff) {
         this.staff = staff;
     }
 
