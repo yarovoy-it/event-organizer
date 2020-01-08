@@ -42,17 +42,6 @@ public class BeverageServiceImpl implements BeverageService {
     }
 
     @Override
-    public Beverage getByIdWithCount(Long id, Integer count) {
-        Beverage beverage = beverageRepository.findById(id).orElseThrow(() -> new RuntimeException("error.beverage.notExist"));
-        if (count != null) {
-            beverage.setCount(count);
-            return beverageRepository.saveAndFlush(beverage);
-        } else {
-            throw new RuntimeException("We can`t set null on " + beverage.getName());
-        }
-    }
-
-    @Override
     public void delete(Beverage beverage) {
         beverageRepository.delete(beverage);
     }

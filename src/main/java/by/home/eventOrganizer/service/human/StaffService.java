@@ -62,7 +62,7 @@ public interface StaffService {
 
     /**
      * Find all with fetch address.
-     * used JPQL
+     * used HQL
      *
      * @return the list of staff
      */

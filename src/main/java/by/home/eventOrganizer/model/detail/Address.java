@@ -25,7 +25,6 @@ public class Address extends BaseEntity {
 
     @Column(name="house_number", nullable = false)
     @NotNull(message = "{address.houseNumber.notNull}")
-    @NotEmpty(message = "{address.houseNumber.notEmpty}")
     private Integer  houseNumber;
 
     private Integer apartment;

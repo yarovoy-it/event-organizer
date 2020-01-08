@@ -9,7 +9,13 @@ import java.util.List;
  */
 public interface GoodsService {
 
-    Goods getByIdWithCount(Long id, Integer count);
+    /**
+     * Find by name list.
+     *
+     * @param name the name
+     * @return the list
+     */
+    List<Goods> findByName(String name);
 
     /**
      * Find all list.

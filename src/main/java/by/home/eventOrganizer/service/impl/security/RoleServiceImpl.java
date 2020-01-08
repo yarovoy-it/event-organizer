@@ -1,5 +1,6 @@
 package by.home.eventOrganizer.service.impl.security;
 
+import by.home.eventOrganizer.component.LocalizedMessageSource;
 import by.home.eventOrganizer.model.security.Role;
 import by.home.eventOrganizer.repository.security.RoleRepository;
 import by.home.eventOrganizer.service.security.RoleService;
@@ -13,9 +14,12 @@ import java.util.Objects;
 @Transactional
 public class RoleServiceImpl implements RoleService {
 
+    private final LocalizedMessageSource localizedMessageSource;
+
     private final RoleRepository roleRepository;
 
-    public RoleServiceImpl(RoleRepository roleRepository) {
+    public RoleServiceImpl(LocalizedMessageSource localizedMessageSource, RoleRepository roleRepository) {
+        this.localizedMessageSource = localizedMessageSource;
         this.roleRepository = roleRepository;
     }
 
@@ -26,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findById(Long id) {
-        return roleRepository.findById(id).orElseThrow(() -> new RuntimeException("error.role.notExist"));
+        return roleRepository.findById(id).orElseThrow(() -> new RuntimeException(localizedMessageSource.getMessage("error.role.notExist", new Object[]{})));
     }
 
     @Override
@@ -37,7 +41,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role save(Role role) {
         validate(role.getId() != null, "error.user.notHaveId");
-        validate(roleRepository.existsByName(role.getName()), "error.user.notUniqueLogin");
+        validate(roleRepository.existsByName(role.getName()), "error.user.notUnique");
         return roleRepository.saveAndFlush(role);
     }
 
@@ -52,20 +56,20 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void delete(Role user) {
-        validate(user == null, "error.user.haveId");
-        roleRepository.delete(user);
+    public void delete(Role role) {
+        validate(role == null, "error.role.haveId");
+        roleRepository.delete(role);
     }
 
     @Override
     public void deleteById(Long id) {
-        findById(id);
+        validate(findById(id)==null, "error.role.notFind");
         roleRepository.deleteById(id);
     }
 
     private void validate(boolean expression, String errorMessage) {
         if (expression) {
-            throw new RuntimeException(errorMessage);
+            throw new RuntimeException(localizedMessageSource.getMessage(errorMessage, new Object[]{}));
         }
     }
 }

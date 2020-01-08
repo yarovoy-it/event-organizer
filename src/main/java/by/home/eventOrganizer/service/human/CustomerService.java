@@ -19,7 +19,7 @@ public interface CustomerService {
 
     /**
      * Find all with fetch address.
-     * used JPQL
+     * used hQL
      *
      * @return the list of customers
      */

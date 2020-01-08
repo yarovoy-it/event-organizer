@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 public interface TokenService {
 
     /**
-     * Generate token string.
+     * Generate new token string.
      *
      * @param authentication the authentication
      * @return the string

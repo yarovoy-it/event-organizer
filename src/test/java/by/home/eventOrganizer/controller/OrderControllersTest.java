@@ -1,7 +1,5 @@
 package by.home.eventOrganizer.controller;
 
-import by.home.eventOrganizer.config.DatabaseConfiguration;
-import by.home.eventOrganizer.configuration.TestDatabaseConfiguration;
 import by.home.eventOrganizer.configuration.TestWebConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.Charset;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -28,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {TestWebConfiguration.class})
 @WebAppConfiguration
 @Transactional
-public class GoodsControllerTest {
+public class OrderControllersTest {
 
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
@@ -43,31 +41,11 @@ public class GoodsControllerTest {
     }
 
     @Test
-    public void testGetOneExist() throws Exception {
-        mockMvc.perform(get("/goods/28"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Plastic"))
-                .andExpect(jsonPath("$.type").value("Table"))
-                .andExpect(jsonPath("$.count").value("100"))
-                .andReturn();
-    }
-
-    @Test
-    public void testGetOneNotExist() throws Exception {
-        mockMvc.perform(get("/goods/43"))
-                .andDo(print())
-                .andExpect(status().is5xxServerError())
-                .andExpect(jsonPath("$.message").value("error"))
-                .andReturn();
-    }
-
-    @Test
     public void testGetAll() throws Exception {
-        mockMvc.perform(get("/goods"))
+        mockMvc.perform(get("/order"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Plastic"))
+                .andExpect(jsonPath("$[0].goods").value("Plastic"))
                 .andExpect(jsonPath("$[0].type").value("Table"))
                 .andExpect(jsonPath("$[0].count").value("100"))
                 .andExpect(jsonPath("$[1].name").value("Hultafors"))
@@ -76,24 +54,6 @@ public class GoodsControllerTest {
                 .andExpect(jsonPath("$[2].name").value("King"))
                 .andExpect(jsonPath("$[2].type").value("Knife"))
                 .andExpect(jsonPath("$[2].count").value("500"))
-                .andReturn();
-    }
-
-    @Test
-    public void testPutOneNotExist() throws Exception {
-        mockMvc.perform(put("/goods/43").contentType(APPLICATION_JSON_UTF8).content("{\"id\":43,\"name\":\"Plastic\",\"type\":\"Fork\"}"))
-                .andDo(print())
-                .andExpect(status().is5xxServerError())
-                .andExpect(jsonPath("$.message").value("error.goods.NotExist"))
-                .andReturn();
-    }
-
-    @Test
-    public void testSaveExistBadRequest() throws Exception {
-        mockMvc.perform(post("/goods").contentType(APPLICATION_JSON_UTF8).content("{\"name\":\"type\"}"))
-                .andDo(print())
-                .andExpect(status().is4xxClientError())
-                .andExpect(jsonPath("$.message").value("{gdsDetail.type.notEmpty};{gdsDetail.type.notNull};"))
                 .andReturn();
     }
 }

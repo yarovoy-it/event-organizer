@@ -32,9 +32,8 @@ public class StaffController {
         this.addressService = addressService;
     }
 
-    //TODO
     @GetMapping(value = "/dep/{department}")
-    public ResponseEntity<List<StaffDto>> getByName(@PathVariable String department) {
+    public ResponseEntity<List<StaffDto>> getByDepartment(@PathVariable String department) {
         Department departEnum = Department.valueOf(department.toUpperCase());
         final List<Staff> staffDepartment = staffService.findByDepartment(departEnum);
         final List<StaffDto> staffDtoList = staffDepartment.stream()

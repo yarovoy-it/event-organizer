@@ -9,16 +9,35 @@ import java.util.List;
  */
 public interface OrderService {
 
-    Order getSumOfOrderById(Long id);
 
+    /**
+     * Fetches all order.
+     *
+     * @param id the id
+     * @return the order
+     */
+    Order fetchesAll(Long id);
+
+    /**
+     * Find all with fetches list.
+     *
+     * @return the list
+     */
     List<Order> findAllWithFetches();
 
+    /**
+     * Exists by id boolean.
+     *
+     * @param id the id
+     * @return the boolean
+     */
     boolean existsById(Long id);
 
     /**
      * Save.
      *
      * @param order the order
+     * @return the order
      */
     Order save(Order order);
 
@@ -38,11 +57,32 @@ public interface OrderService {
      */
     Double orderStaffSalaryByCustomerPhoneNumber(Long number);
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     List<Order> findAll();
 
+    /**
+     * Update order.
+     *
+     * @param order the order
+     * @return the order
+     */
     Order update(Order order);
 
+    /**
+     * Delete.
+     *
+     * @param order the order
+     */
     void delete(Order order);
 
+    /**
+     * Delete by id.
+     *
+     * @param id the id
+     */
     void deleteById(Long id);
 }

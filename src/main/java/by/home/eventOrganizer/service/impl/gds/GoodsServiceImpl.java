@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -24,24 +25,22 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsRepository.findById(id).orElseThrow(()-> new RuntimeException("error"));
     }
 
+
     @Override
-    public Goods getByIdWithCount(Long id, Integer count) {
-        Goods goods = goodsRepository.findById(id).orElseThrow(() -> new RuntimeException("error.goods.notExist"));
-        if (count != null) {
-            goods.setCount(count);
-            return goodsRepository.saveAndFlush(goods);
-        } else {
-            throw new RuntimeException("We can`t set null on " + goods.getName());
-        }
+    public List<Goods> findByName(String name) {
+        return goodsRepository.findByName(name);
     }
 
     @Override
     public Goods save(Goods goods) {
-        return goodsRepository.save(goods);
+        return goodsRepository.saveAndFlush(goods);
     }
 
     @Override
     public Goods update(Goods goods) {
+        final Long id = goods.getId();
+        validate(id == null, "error.goods.haveId");
+        goodsRepository.findById(id).orElseThrow(()-> new RuntimeException("error.goods.NotExist"));
         return goodsRepository.saveAndFlush(goods);
     }
 
@@ -53,5 +52,11 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public void deleteById(Long id) {
         goodsRepository.deleteById(id);
+    }
+
+    private void validate(boolean expression, String errorMessage) {
+        if (expression) {
+            throw new RuntimeException(errorMessage);
+        }
     }
 }

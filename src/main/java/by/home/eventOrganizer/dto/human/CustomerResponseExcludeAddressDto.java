@@ -1,6 +1,6 @@
 package by.home.eventOrganizer.dto.human;
 
-public class CustomerExcludAddressDto {
+public class CustomerResponseExcludeAddressDto {
 
     private String name;
 

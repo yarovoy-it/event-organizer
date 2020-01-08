@@ -18,7 +18,6 @@ public class AddressDto extends BaseDto {
     private String street;
 
     @NotNull(message = "{address.houseNumber.notNull}")
-    @NotEmpty(message = "{address.houseNumber.notEmpty}")
     private Integer  houseNumber;
 
     private Integer apartment;

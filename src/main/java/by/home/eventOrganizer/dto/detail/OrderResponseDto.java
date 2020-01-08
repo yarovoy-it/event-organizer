@@ -1,10 +1,12 @@
 package by.home.eventOrganizer.dto.detail;
 
-import by.home.eventOrganizer.dto.human.CustomerExcludAddressDto;
+import by.home.eventOrganizer.dto.human.CustomerResponseExcludeAddressDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class OrderPriceCustomerDescriptionDto {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class OrderResponseDto {
 
-    private CustomerExcludAddressDto customer;
+    private CustomerResponseExcludeAddressDto customer;
 
     private String description;
 
@@ -14,11 +16,11 @@ public class OrderPriceCustomerDescriptionDto {
 
     private AddressDto address;
 
-    public CustomerExcludAddressDto getCustomer() {
+    public CustomerResponseExcludeAddressDto getCustomer() {
         return customer;
     }
 
-    public void setCustomer(CustomerExcludAddressDto customer) {
+    public void setCustomer(CustomerResponseExcludeAddressDto customer) {
         this.customer = customer;
     }
 

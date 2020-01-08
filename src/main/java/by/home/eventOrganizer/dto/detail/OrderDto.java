@@ -5,11 +5,14 @@ import by.home.eventOrganizer.dto.gds.BeverageDto;
 import by.home.eventOrganizer.dto.gds.GoodsDto;
 import by.home.eventOrganizer.dto.human.CustomerDto;
 import by.home.eventOrganizer.dto.human.StaffWithoutAddressDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDto extends BaseDto {
 
     private List<GoodsDto> goods;
@@ -18,6 +21,8 @@ public class OrderDto extends BaseDto {
 
     private Set<StaffWithoutAddressDto> staff;
 
+    @NotNull(message = "{order.executeDate.notNull}")
+    @NotEmpty(message = "{order.executeDate.notEmpty}")
     private CustomerDto customer;
 
     private String description;
@@ -26,6 +31,8 @@ public class OrderDto extends BaseDto {
 
     private String executeDate;
 
+    @NotNull(message = "{order.address.notNull}")
+    @NotEmpty(message = "{order.address.notEmpty}")
     private AddressDto address;
 
     public List<GoodsDto> getGoods() {

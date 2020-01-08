@@ -2,12 +2,13 @@ package by.home.eventOrganizer.dto.human;
 
 import by.home.eventOrganizer.dto.BaseDto;
 import by.home.eventOrganizer.dto.detail.AddressDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PersonDto extends BaseDto {
 
     @NotNull(message = "{person.name.notNull}")

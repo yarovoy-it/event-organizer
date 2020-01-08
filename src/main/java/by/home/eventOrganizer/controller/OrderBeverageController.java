@@ -1,6 +1,6 @@
 package by.home.eventOrganizer.controller;
 
-import by.home.eventOrganizer.dto.detail.OrderPriceCustomerDescriptionDto;
+import by.home.eventOrganizer.dto.detail.OrderResponseDto;
 import by.home.eventOrganizer.dto.detail.OrderSupplementDto;
 import by.home.eventOrganizer.model.detail.Order;
 import by.home.eventOrganizer.model.gds.Beverage;
@@ -36,7 +36,7 @@ public class OrderBeverageController {
     }
 
     @PutMapping
-    public ResponseEntity<OrderPriceCustomerDescriptionDto> update(@Valid @RequestBody OrderSupplementDto orderDto) {
+    public ResponseEntity<OrderResponseDto> update(@Valid @RequestBody OrderSupplementDto orderDto) {
         if (orderService.existsById(orderDto.getOrderId())) {
             Order order = orderService.findById(orderDto.getOrderId());
             Set<Beverage> beverages = new HashSet<>();
@@ -50,7 +50,7 @@ public class OrderBeverageController {
                 beverages.add(beverage);
             }
             order.setBeverages(beverages);
-            final OrderPriceCustomerDescriptionDto responseOrderDto = mapper.map(orderService.update(order), OrderPriceCustomerDescriptionDto.class);
+            final OrderResponseDto responseOrderDto = mapper.map(orderService.update(order), OrderResponseDto.class);
             return new ResponseEntity<>(responseOrderDto, HttpStatus.OK);
         } else {
             throw new RuntimeException("we cant find this order");

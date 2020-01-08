@@ -23,8 +23,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    @Autowired
-    private EntityManager em;
+//    @Autowired
+//    private EntityManager em;
 
     private Double priceOfOrderById(Long id) {
         Double orderSum;
@@ -37,9 +37,9 @@ public class OrderServiceImpl implements OrderService {
 
     //TODO if will have time try to count order sum by criteria
     @Override
-    public Order getSumOfOrderById(Long id) {
-
-        CriteriaBuilder builder = em.getCriteriaBuilder();
+    public Order fetchesAll(Long id) {
+/*
+       CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Order> query = builder.createQuery(Order.class);
         Root<Order> root = query.from(Order.class);
         Fetch<Order, Staff> fetchSt = root.fetch("staff", JoinType.INNER);

@@ -4,11 +4,15 @@ import by.home.eventOrganizer.dto.detail.OrderDto;
 import by.home.eventOrganizer.model.human.enums.Department;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StaffDto extends PersonDto{
 
+    @NotNull(message = "{person.name.notNull}")
+    @NotEmpty(message = "{person.name.notEmpty}")
     private Department department;
 
     private Double salary;

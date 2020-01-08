@@ -35,7 +35,7 @@ public class TestDatabaseConfiguration {
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder.setType(EmbeddedDatabaseType.H2)
-                .addScript("/beverage_goods.sql")
+                .addScripts("/beverage_goods.sql", "/address_staff_customer.sql", "/user_roles.sql", "orders_fetch.sql")
                 .build();
     }
 

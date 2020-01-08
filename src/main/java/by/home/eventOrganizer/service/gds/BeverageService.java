@@ -49,8 +49,6 @@ public interface BeverageService {
     Beverage update(Beverage beverage);
 
 
-    Beverage getByIdWithCount(Long id, Integer count);
-
     /**
      * Delete.
      *

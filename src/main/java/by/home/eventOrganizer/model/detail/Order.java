@@ -7,6 +7,8 @@ import by.home.eventOrganizer.model.human.Customer;
 import by.home.eventOrganizer.model.human.Staff;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -33,7 +35,7 @@ public class Order extends BaseEntity {
     private Set<Staff> staff;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     private String description;
@@ -41,11 +43,15 @@ public class Order extends BaseEntity {
     @Column(name = "sum_of_order")
     private Double price;
 
+    @NotNull(message = "{order.executeDate.notNull}")
+    @NotEmpty(message = "{order.executeDate.notEmpty}")
     @Column(name="date_of_execution", nullable = false)
     private LocalDate executeDate;
 
+    @NotNull(message = "{order.address.notNull}")
+    @NotEmpty(message = "{order.address.notEmpty}")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     private Address address;
 
     public Customer getCustomer() {
@@ -111,20 +117,5 @@ public class Order extends BaseEntity {
     public void setExecuteDate(LocalDate executeDate) {
         this.executeDate = executeDate;
     }
-/*
-    @Override
-    public String toString() {
-        return "Order{" +
-                "goods=" + goods +
-                ", beverages=" + beverages +
-                ", staff=" + staff +
-                ", customer=" + customer +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", executeDate=" + executeDate +
-                ", address=" + address +
-                "} " + super.toString();
-    }
 
- */
 }

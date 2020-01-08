@@ -1,22 +1,31 @@
 package by.home.eventOrganizer.dto.gds;
 
 import by.home.eventOrganizer.dto.BaseDto;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GdsDetailDto extends BaseDto {
 
+    @NotNull(message = "{gdsDetail.name.notNull}")
+    @NotEmpty(message = "{gdsDetail.name.notEmpty}")
     private String name;
 
+    @NotNull(message = "{gdsDetail.type.notNull}")
+    @NotEmpty(message = "{gdsDetail.type.notEmpty}")
     private String type;
 
-    private String count;
+    private Integer count;
 
     private Double price;
 
-    public String getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 

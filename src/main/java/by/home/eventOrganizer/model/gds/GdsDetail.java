@@ -2,16 +2,29 @@ package by.home.eventOrganizer.model.gds;
 
 import by.home.eventOrganizer.model.base.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @MappedSuperclass
 public abstract class GdsDetail extends BaseEntity implements Cloneable {
 
+    @Column(nullable = false)
+    @NotNull(message = "{gdsDetail.name.notNull}")
+    @NotEmpty(message = "{gdsDetail.name.notEmpty}")
+    @Size(min = 3, max = 50, message = "{gdsDetail.name.size}")
     private String name;
 
+    @Column(nullable = false)
+    @NotNull(message = "{gdsDetail.count.notNull}")
     private Integer count;
 
+    @NotNull(message = "{gdsDetail.type.notNull}")
+    @NotEmpty(message = "{gdsDetail.type.notEmpty}")
+    @Size(min = 3, max = 50, message = "{gdsDetail.type.size}")
     private String type;
 
     private Double price;
