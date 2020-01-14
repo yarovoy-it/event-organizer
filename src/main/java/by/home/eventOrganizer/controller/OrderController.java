@@ -38,7 +38,7 @@ public class OrderController {
 
     @GetMapping
     public ResponseEntity<List<OrderDto>> getAll() {
-        final List<Order> orders = orderService.findAllWithFetches();
+        final List<Order> orders = orderService.fetchesAll();
         final List<OrderDto> staffDtoList = orders.stream()
                 .map((order) -> mapper.map(order, OrderDto.class))
                 .collect(Collectors.toList());

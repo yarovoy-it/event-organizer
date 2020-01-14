@@ -1,7 +1,5 @@
 package by.home.eventOrganizer.controller;
 
-import by.home.eventOrganizer.config.DatabaseConfiguration;
-import by.home.eventOrganizer.configuration.TestDatabaseConfiguration;
 import by.home.eventOrganizer.configuration.TestWebConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,7 +56,7 @@ public class GoodsControllerTest {
         mockMvc.perform(get("/goods/43"))
                 .andDo(print())
                 .andExpect(status().is5xxServerError())
-                .andExpect(jsonPath("$.message").value("error"))
+                .andExpect(jsonPath("$.message").value("Goods doesn't exist!"))
                 .andReturn();
     }
 
@@ -89,11 +87,14 @@ public class GoodsControllerTest {
     }
 
     @Test
-    public void testSaveExistBadRequest() throws Exception {
-        mockMvc.perform(post("/goods").contentType(APPLICATION_JSON_UTF8).content("{\"name\":\"type\"}"))
+    public void testSave() throws Exception {
+        mockMvc.perform(post("/goods").contentType(APPLICATION_JSON_UTF8).content("{\"id\": 301,\"name\": \"testHultafors\", \"type\": \"testKnife\",\"count\": 500, \"price\": 0.65}"))
                 .andDo(print())
-                .andExpect(status().is4xxClientError())
-                .andExpect(jsonPath("$.message").value("{gdsDetail.type.notEmpty};{gdsDetail.type.notNull};"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("testHultafors"))
+                .andExpect(jsonPath("$.type").value("testKnife"))
+                .andExpect(jsonPath("$.count").value("500"))
+                .andExpect(jsonPath("$.price").value("0.65"))
                 .andReturn();
     }
 }

@@ -9,7 +9,7 @@ public class CustomerDto extends PersonDto{
 
     private Integer discount;
 
-    private Double summa;
+    private Double sum;
 
     private List<OrderDto> orderDtoList;
 
@@ -21,12 +21,12 @@ public class CustomerDto extends PersonDto{
         this.discount = discount;
     }
 
-    public Double getSumma() {
-        return summa;
+    public Double getSum() {
+        return sum;
     }
 
-    public void setSumma(Double summa) {
-        this.summa = summa;
+    public void setSum(Double sum) {
+        this.sum = sum;
     }
 
     public List<OrderDto> getOrderDtoList() {

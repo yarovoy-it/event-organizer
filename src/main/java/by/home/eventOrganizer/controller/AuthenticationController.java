@@ -56,8 +56,8 @@ public class AuthenticationController {
         user.setUsername(userRegistrationRequestDto.getUsername());
         user.setPassword(encoder.encode(userRegistrationRequestDto.getPassword()));
         final Set<Role> roles = userRegistrationRequestDto.getRoles().stream()
-                .map(name -> roleService.findByName(name))
-                .filter(obj -> Objects.nonNull(obj))
+                .map(roleService::findByName)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
         user.setRoles(roles);
         return userService.save(user);

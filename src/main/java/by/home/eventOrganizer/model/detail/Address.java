@@ -15,7 +15,6 @@ public class Address extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @NotNull(message = "{address.city.notNull}")
-    @NotEmpty(message = "{address.city.notEmpty}")
     private City city;
 
     @Column(nullable = false)

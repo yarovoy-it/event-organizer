@@ -18,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.nio.charset.Charset;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,19 +42,90 @@ public class OrderControllersTest {
     }
 
     @Test
+    public void testSave() throws Exception {
+        mockMvc.perform(post("/order").contentType(APPLICATION_JSON_UTF8).content("{\n" +
+                "        \"id\": 999,\n" +
+                "        \"goods\": [\n" +
+                "            {\n" +
+                "                \"id\": 201,\n" +
+                "                \"name\": \"Hultafors\",\n" +
+                "                \"type\": \"Knife\",\n" +
+                "                \"count\": 500,\n" +
+                "                \"price\": 0.65\n" +
+                "            }\n" +
+                "        ],\n" +
+                "        \"beverages\": [\n" +
+                "            {\n" +
+                "                \"id\": 202,\n" +
+                "                \"name\": \"Patron\",\n" +
+                "                \"type\": \"Tequila\",\n" +
+                "                \"count\": 90,\n" +
+                "                \"price\": 120.0,\n" +
+                "                \"volume\": 1.0\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"id\": 203,\n" +
+                "                \"name\": \"Highland Park\",\n" +
+                "                \"type\": \"Whisky\",\n" +
+                "                \"count\": 85,\n" +
+                "                \"price\": 100.0,\n" +
+                "                \"volume\": 1.0\n" +
+                "            }\n" +
+                "        ],\n" +
+                "        \"staff\": [\n" +
+                "            {\n" +
+                "                \"id\": 204,\n" +
+                "                \"name\": \"Macha\",\n" +
+                "                \"surname\": \"Waiterovna\",\n" +
+                "                \"phoneNumber\": 375335673422,\n" +
+                "                \"department\": \"WAITER\",\n" +
+                "                \"salary\": 20.9\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"id\": 205,\n" +
+                "                \"name\": \"Grisha\",\n" +
+                "                \"surname\": \"Bikov\",\n" +
+                "                \"phoneNumber\": 375337272387,\n" +
+                "                \"department\": \"SECURITY\",\n" +
+                "                \"salary\": 25.0\n" +
+                "            }\n" +
+                "        ],\n" +
+                "        \"customer\": {\n" +
+                "            \"id\": 1001,\n" +
+                "            \"name\": \"Viktor\",\n" +
+                "            \"surname\": \"Melnik\",\n" +
+                "            \"phoneNumber\": 375337468215,\n" +
+                "            \"address\": {\n" +
+//                "                \"id\": 51,\n" +
+                "                \"city\": \"GRODNO\",\n" +
+                "                \"street\": \"OrdDerzinskogo\",\n" +
+                "                \"houseNumber\": 205,\n" +
+                "                \"apartment\": 74\n" +
+                "            },\n" +
+                "            \"discount\": 0\n" +
+                "        },\n" +
+                "        \"description\": \"nice and sexy\",\n" +
+                "        \"executeDate\": \"2020-01-12\",\n" +
+                "        \"address\": {\n" +
+//                "            \"id\": 50,\n" +
+                "            \"city\": \"GRODNO\",\n" +
+                "            \"street\": \"OrdLimoza\",\n" +
+                "            \"houseNumber\": 45,\n" +
+                "            \"apartment\": 145\n" +
+                "        }\n" +
+                "    }"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.customer.name").value("Viktoria"))
+                .andReturn();
+    }
+
+    @Test
     public void testGetAll() throws Exception {
         mockMvc.perform(get("/order"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].goods").value("Plastic"))
-                .andExpect(jsonPath("$[0].type").value("Table"))
-                .andExpect(jsonPath("$[0].count").value("100"))
-                .andExpect(jsonPath("$[1].name").value("Hultafors"))
-                .andExpect(jsonPath("$[1].type").value("Knife"))
-                .andExpect(jsonPath("$[1].count").value("500"))
-                .andExpect(jsonPath("$[2].name").value("King"))
-                .andExpect(jsonPath("$[2].type").value("Knife"))
-                .andExpect(jsonPath("$[2].count").value("500"))
                 .andReturn();
     }
+
 }

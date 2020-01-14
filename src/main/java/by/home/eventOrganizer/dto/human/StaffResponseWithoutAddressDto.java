@@ -4,21 +4,13 @@ import by.home.eventOrganizer.dto.BaseDto;
 import by.home.eventOrganizer.model.human.enums.Department;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class StaffWithoutAddressDto extends BaseDto {
+public class StaffResponseWithoutAddressDto extends BaseDto {
 
-    @NotNull(message = "{person.name.notNull}")
-    @NotEmpty(message = "{person.name.notEmpty}")
-    @Size(min = 3, max = 50, message = "{person.name.size}")
     private String name;
 
     private String surname;
 
-    @NotNull(message = "{person.phoneNumber.notNull}")
     private Long phoneNumber;
 
     private Department department;

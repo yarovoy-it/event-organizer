@@ -1,5 +1,6 @@
 package by.home.eventOrganizer.service.impl.security;
 
+import by.home.eventOrganizer.component.LocalizedMessageSource;
 import by.home.eventOrganizer.model.security.User;
 import by.home.eventOrganizer.repository.security.UserRepository;
 import by.home.eventOrganizer.service.security.RoleService;
@@ -14,11 +15,14 @@ import java.util.Objects;
 @Transactional
 public class UserServiceImpl implements UserService {
 
+    private final LocalizedMessageSource localizedMessageSource;
+
     private final RoleService roleService;
 
     private final UserRepository userRepository;
 
-    public UserServiceImpl(RoleService roleService, UserRepository userRepository) {
+    public UserServiceImpl(LocalizedMessageSource localizedMessageSource, RoleService roleService, UserRepository userRepository) {
+        this.localizedMessageSource = localizedMessageSource;
         this.roleService = roleService;
         this.userRepository = userRepository;
     }
@@ -30,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("error.user.notExist"));
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException(localizedMessageSource.getMessage("error.user.notExist", new Object[]{})));
     }
 
     @Override
@@ -51,7 +55,7 @@ public class UserServiceImpl implements UserService {
         validate(id == null, "error.user.haveId");
         final User duplicateUser = userRepository.findByUsername(user.getUsername());
         final boolean isDuplicateExists = duplicateUser != null && !Objects.equals(duplicateUser.getId(), id);
-        validate(isDuplicateExists, "error.user.name.notUnique");
+        validate(isDuplicateExists, "error.user.notUnique");
         findById(id);
         return saveAndFlush(user);
     }
@@ -79,7 +83,7 @@ public class UserServiceImpl implements UserService {
 
     private void validate(boolean expression, String errorMessage) {
         if (expression) {
-            throw new RuntimeException(errorMessage);
+            throw new RuntimeException(localizedMessageSource.getMessage(errorMessage, new Object[]{}));
         }
     }
 }

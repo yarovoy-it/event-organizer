@@ -3,7 +3,6 @@ package by.home.eventOrganizer.controller;
 import by.home.eventOrganizer.dto.human.StaffDto;
 import by.home.eventOrganizer.model.human.Staff;
 import by.home.eventOrganizer.model.human.enums.Department;
-import by.home.eventOrganizer.service.detail.AddressService;
 import by.home.eventOrganizer.service.human.StaffService;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
@@ -24,12 +23,10 @@ public class StaffController {
 
     private final StaffService staffService;
 
-    private final AddressService addressService;
-
-    public StaffController(Mapper mapper, StaffService staffService, AddressService addressService) {
+    public StaffController(Mapper mapper, StaffService staffService) {
         this.mapper = mapper;
         this.staffService = staffService;
-        this.addressService = addressService;
+
     }
 
     @GetMapping(value = "/dep/{department}")
@@ -44,7 +41,8 @@ public class StaffController {
 
     @GetMapping
     public ResponseEntity<List<StaffDto>> getAll() {
-        final List<Staff> staffAll = staffService.findAllWithFetch();
+        final List<Staff> staffAll = staffService.findAll();
+        System.out.println(staffAll.toString());
         final List<StaffDto> staffDtoList = staffAll.stream()
                 .map((staff) -> mapper.map(staff, StaffDto.class))
                 .collect(Collectors.toList());

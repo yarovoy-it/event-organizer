@@ -40,8 +40,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role save(Role role) {
-        validate(role.getId() != null, "error.user.notHaveId");
-        validate(roleRepository.existsByName(role.getName()), "error.user.notUnique");
+        validate(role.getId() != null, "error.role.notHaveId");
+        validate(roleRepository.existsByName(role.getName()), "error.role.notUnique");
         return roleRepository.saveAndFlush(role);
     }
 
@@ -51,7 +51,7 @@ public class RoleServiceImpl implements RoleService {
         validate(id == null, "error.role.haveId");
         final Role duplicateRole = roleRepository.findByName(role.getName());
         final boolean isDuplicateExists = duplicateRole != null && !Objects.equals(duplicateRole.getId(), id);
-        validate(isDuplicateExists, "error.role.name.notUnique");
+        validate(isDuplicateExists, "error.role.notUnique");
         return roleRepository.saveAndFlush(role);
     }
 

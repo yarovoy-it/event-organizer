@@ -13,13 +13,14 @@ INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (2,'GRODN
 INSERT INTO addresses (id,city, street, house_number) VALUES (3,'GRODNO', '17may', 3);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (4,'GRODNO', 'Derzinskogo', 135,76);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (5,'GRODNO', 'Pushkina', 34, 28);
-INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (6,'GRODNO', 'Folush', 167, 104);
+-- INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (6,'GRODNO', 'Folush', 167, 104);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (7,'GRODNO', 'Derzinskogo', 35,79);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (8,'GRODNO', 'Pushkina', 64, 23);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (9,'GRODNO', 'Folush', 137, 10);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (10,'GRODNO', 'Derzinskogo', 105,74);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (11,'GRODNO', 'Sovetskaia', 123, 28);
 INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (12,'GRODNO', 'Sovetskaia', 13, 104);
+INSERT INTO addresses (id,city, street, house_number,apartment) VALUES (222,'GRODNO', 'OrderTestskaia', 133, 4);
 
 CREATE TABLE  IF NOT EXISTS public.staff
 (
@@ -37,7 +38,7 @@ CREATE TABLE  IF NOT EXISTS public.staff
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
 VALUES (18, 'Vasia', 375297642865,'Vasichkin', 2, 'BARTENDER', 20.00);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
-VALUES (19, 'Dasha', 375297452387,'Mudilova', 11, 'WAITER', 15.00);
+VALUES (19, 'Dasha', 375297452387,'Mudilova', null, 'WAITER', 15.00);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
 VALUES (20, 'Grisha', 375297272387,'Bikov', 7, 'SECURITY', 25.00);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
@@ -62,7 +63,7 @@ CREATE TABLE  IF NOT EXISTS public.customers
 INSERT INTO customers (id, name, phone_number, surname, address_id, discount ,summa)
 VALUES (23, 'Petia', 375337835746,'Petichkin', 4, 0 , 0);
 INSERT INTO customers (id, name, phone_number, surname, address_id, discount ,summa)
-VALUES (24, 'Tania', 375337238765,'Grivuch', 6, 0 , 0);
+VALUES (24, 'Tania', 375337238765,'Grivuch', null, 0 , 0);
 INSERT INTO customers (id, name, phone_number, surname, address_id, discount ,summa)
 VALUES (25, 'Mania', 375337832475,'Golovach', 8, 0 , 50.00);
 INSERT INTO customers (id, name, phone_number, surname, address_id, discount ,summa)

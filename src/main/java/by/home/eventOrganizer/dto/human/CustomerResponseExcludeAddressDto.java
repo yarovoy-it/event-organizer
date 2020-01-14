@@ -1,5 +1,8 @@
 package by.home.eventOrganizer.dto.human;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerResponseExcludeAddressDto {
 
     private String name;

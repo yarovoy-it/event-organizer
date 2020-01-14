@@ -7,7 +7,6 @@ import by.home.eventOrganizer.model.human.Customer;
 import by.home.eventOrganizer.model.human.Staff;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Set;
@@ -16,19 +15,19 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order extends BaseEntity {
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "orders_goods",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "goods_id")})
     private Set<Goods> goods;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "orders_beverages",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "beverage_id")})
     private Set<Beverage> beverages;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "orders_staff",
             joinColumns = {@JoinColumn(name ="order_id")},
             inverseJoinColumns = {@JoinColumn(name="staff_id")})
@@ -44,12 +43,10 @@ public class Order extends BaseEntity {
     private Double price;
 
     @NotNull(message = "{order.executeDate.notNull}")
-    @NotEmpty(message = "{order.executeDate.notEmpty}")
     @Column(name="date_of_execution", nullable = false)
     private LocalDate executeDate;
 
     @NotNull(message = "{order.address.notNull}")
-    @NotEmpty(message = "{order.address.notEmpty}")
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     private Address address;

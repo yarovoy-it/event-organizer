@@ -16,7 +16,7 @@ public interface OrderService {
      * @param id the id
      * @return the order
      */
-    Order fetchesAll(Long id);
+    List<Order> fetchesAll();
 
     /**
      * Find all with fetches list.

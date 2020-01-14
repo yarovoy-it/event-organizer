@@ -3,7 +3,6 @@ package by.home.eventOrganizer.service.detail;
 import by.home.eventOrganizer.model.detail.Address;
 
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -25,7 +24,7 @@ public interface AddressService {
      * @param id the id
      * @return the optional
      */
-    Optional<Address> findById(Long id);
+    Address findById(Long id);
 
     /**
      * Find all list.

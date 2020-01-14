@@ -4,7 +4,6 @@ import by.home.eventOrganizer.model.detail.Order;
 import by.home.eventOrganizer.model.human.enums.Department;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -15,7 +14,6 @@ public class Staff extends Person{
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     @NotNull(message = "{person.name.notNull}")
-    @NotEmpty(message = "{person.name.notEmpty}")
     private Department department;
 
     @ManyToMany(mappedBy = "staff")

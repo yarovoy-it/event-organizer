@@ -42,7 +42,7 @@ if not exists CREATE TABLE public.staff
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
 VALUES (18, 'Vasia', 375297642865,'Vasichkin', 2, 'BARTENDER', 20.00);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
-VALUES (19, 'Dasha', 375297452387,'Mudilova', 11, 'WAITER', 15.00);
+VALUES (19, 'Dasha', 375297452387,'Mudilova', null, 'WAITER', 15.00);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
 VALUES (20, 'Grisha', 375297272387,'Bikov', 7, 'SECURITY', 25.00);
 INSERT INTO staff (id, name, phone_number, surname, address_id, department , salary)
