@@ -11,19 +11,20 @@ public interface OrderService {
 
 
     /**
-     * Fetches all order.
+     * Fetches all list.
+     *
+     * @return the list
+     */
+    List<Order> fetchesAll();
+
+
+    /**
+     * Fetches by id order.
      *
      * @param id the id
      * @return the order
      */
-    List<Order> fetchesAll();
-
-    /**
-     * Find all with fetches list.
-     *
-     * @return the list
-     */
-    List<Order> findAllWithFetches();
+    Order fetchesById(Long id);
 
     /**
      * Exists by id boolean.
@@ -34,7 +35,7 @@ public interface OrderService {
     boolean existsById(Long id);
 
     /**
-     * Save.
+     * Save order.
      *
      * @param order the order
      * @return the order
@@ -42,15 +43,15 @@ public interface OrderService {
     Order save(Order order);
 
     /**
-     * Find by id optional.
+     * Find by id order.
      *
      * @param id the id
-     * @return the optional
+     * @return the order
      */
     Order findById(Long id);
 
     /**
-     * Order price by customer phone number double.
+     * Order staff salary by customer phone number double.
      *
      * @param number the number
      * @return the double

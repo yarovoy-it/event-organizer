@@ -36,6 +36,15 @@ public class CustomerController {
         return new ResponseEntity<>(customerDtoList, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/phone/{number}")
+    public ResponseEntity<List<CustomerDto>> getByPhone(@PathVariable Long number) {
+        final List<Customer> goodsByPhone = customerService.findByPhoneNumber(number);
+        final List<CustomerDto> customerDto = goodsByPhone.stream()
+                .map((goods) -> mapper.map(goods, CustomerDto.class))
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(customerDto, HttpStatus.OK);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<CustomerDto> getOne(@PathVariable Long id) {
         final CustomerDto customerDto = mapper.map(customerService.findById(id), CustomerDto.class);
@@ -45,7 +54,6 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<CustomerDto> save(@Valid @RequestBody @NotNull CustomerDto customerDto) {
         customerDto.setId(null);
-        customerDto.getAddress().setId(null);
         Customer customer = mapper.map(customerDto, Customer.class);
         final CustomerDto responseCustomerDto = mapper.map(customerService.save(mapper.map(customerDto , Customer.class)), CustomerDto.class);
         return new ResponseEntity<>(responseCustomerDto, HttpStatus.OK);

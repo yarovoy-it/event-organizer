@@ -1,10 +1,10 @@
 package by.home.eventOrganizer.dto.detail;
 
 import by.home.eventOrganizer.dto.BaseDto;
-import by.home.eventOrganizer.dto.gds.BeverageDto;
-import by.home.eventOrganizer.dto.gds.GoodsDto;
+import by.home.eventOrganizer.dto.goods.BeverageDto;
+import by.home.eventOrganizer.dto.goods.GoodsDto;
 import by.home.eventOrganizer.dto.human.CustomerDto;
-import by.home.eventOrganizer.dto.human.StaffResponseWithoutAddressDto;
+import by.home.eventOrganizer.dto.human.StaffDto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.validation.constraints.NotNull;
@@ -18,7 +18,7 @@ public class OrderDto extends BaseDto {
 
     private List<BeverageDto> beverages;
 
-    private Set<StaffResponseWithoutAddressDto> staff;
+    private Set<StaffDto> staff;
 
     @NotNull(message = "{order.customer.notNull}")
     private CustomerDto customer;
@@ -48,11 +48,11 @@ public class OrderDto extends BaseDto {
         this.beverages = beverages;
     }
 
-    public Set<StaffResponseWithoutAddressDto> getStaff() {
+    public Set<StaffDto> getStaff() {
         return staff;
     }
 
-    public void setStaff(Set<StaffResponseWithoutAddressDto> staff) {
+    public void setStaff(Set<StaffDto> staff) {
         this.staff = staff;
     }
 

@@ -31,7 +31,7 @@ public interface CustomerService {
      * @param name the name
      * @return the list
      */
-    List<Customer> findByAddress_Street(String name);
+    List<Customer> findByAddressStreet(String name);
 
     /**
      * Find customer by phone number list.

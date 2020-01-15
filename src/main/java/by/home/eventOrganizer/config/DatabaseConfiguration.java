@@ -43,7 +43,7 @@ public class DatabaseConfiguration {
 
 /*
         //for fill database
-        Resource initSchema = new ClassPathResource("roles.sql");
+        Resource initSchema = new ClassPathResource("");
         DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initSchema);
         DatabasePopulatorUtils.execute(databasePopulator, driver);
 */

@@ -18,7 +18,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
      * @param phoneNumber the phone number
      * @return the list
      */
-    List<Order> findByCustomer_PhoneNumber(Long phoneNumber);
+    List<Order> findByCustomerPhoneNumber(Long phoneNumber);
+
+
 
     /**
      * Order salary only for staff by customer by phone number double.
@@ -61,35 +63,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
      */
     @Query(value = "select sum(gds.price * gds.count) from goods gds join orders_goods ord_gds on gds.id = ord_gds.goods_id join orders ord on ord.id = ord_gds.order_id where ord.id = :id", nativeQuery = true)
     Double getGoodsPriceByOrderById(@Param("id") Long id);
-
-
-    /**
-     * Find all with fetches list.
-     *
-     * @return the list
-     */
-    @Query("SELECT o FROM Order o " +
-            "JOIN FETCH o.address  " +
-            "JOIN FETCH o.customer " +
-            "JOIN FETCH o.goods " +
-            "JOIN FETCH o.beverages " +
-            "JOIN FETCH o.staff")
-    List<Order> findAllWithFetches();
-
-    /**
-     * Find by id with fetches order.
-     *
-     * @param id the id
-     * @return the order
-     */
-    @Query("SELECT o FROM Order o " +
-            "JOIN FETCH o.address " +
-            "JOIN FETCH o.customer " +
-            "LEFT JOIN FETCH o.goods " +
-            "LEFT JOIN FETCH o.beverages " +
-            "LEFT JOIN FETCH o.staff " +
-            "where o.id= :id")
-    Order findByIdWithFetches(@Param("id") Long id);
-
 
 }

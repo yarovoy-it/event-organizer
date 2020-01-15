@@ -18,7 +18,7 @@ public interface StaffService {
      * @param name the name
      * @return the list
      */
-    List<Staff> findByAddress_Street(String name);
+    List<Staff> findByAddressStreet(String name);
 
     /**
      * Find by phone number list.

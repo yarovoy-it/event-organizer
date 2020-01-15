@@ -42,8 +42,16 @@ public class StaffController {
     @GetMapping
     public ResponseEntity<List<StaffDto>> getAll() {
         final List<Staff> staffAll = staffService.findAll();
-        System.out.println(staffAll.toString());
         final List<StaffDto> staffDtoList = staffAll.stream()
+                .map((staff) -> mapper.map(staff, StaffDto.class))
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(staffDtoList, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/street/{street}")
+    public ResponseEntity<List<StaffDto>> getOne(@PathVariable String street) {
+        final List<Staff> staffStreet = staffService.findByAddressStreet(street);
+        final List<StaffDto> staffDtoList = staffStreet.stream()
                 .map((staff) -> mapper.map(staff, StaffDto.class))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(staffDtoList, HttpStatus.OK);

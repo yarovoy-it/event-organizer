@@ -1,8 +1,8 @@
 package by.home.eventOrganizer.controller;
 
-import by.home.eventOrganizer.dto.gds.GoodsDto;
-import by.home.eventOrganizer.model.gds.Goods;
-import by.home.eventOrganizer.service.gds.GoodsService;
+import by.home.eventOrganizer.dto.goods.GoodsDto;
+import by.home.eventOrganizer.model.goods.Goods;
+import by.home.eventOrganizer.service.goods.GoodsService;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

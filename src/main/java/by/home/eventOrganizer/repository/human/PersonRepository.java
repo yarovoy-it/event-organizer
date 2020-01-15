@@ -30,7 +30,7 @@ public interface PersonRepository<T extends Person, ID> extends JpaRepository<T,
      * @param name the name of street
      * @return the list
      */
-    List<T> findByAddress_Street(String name);
+    List<T> findByAddressStreet(String name);
 
     /**
      * Find abstract person by phone number list.

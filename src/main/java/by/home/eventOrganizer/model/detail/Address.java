@@ -8,6 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * The type Address.
+ */
 @Entity
 @Table(name = "addresses")
 public class Address extends BaseEntity {
@@ -34,50 +37,110 @@ public class Address extends BaseEntity {
     @OneToOne(mappedBy = "address")
     private Order order;
 
+    /**
+     * Gets order.
+     *
+     * @return the order
+     */
     public Order getOrder() {
         return order;
     }
 
+    /**
+     * Sets order.
+     *
+     * @param order the order
+     */
     public void setOrder(Order order) {
         this.order = order;
     }
 
+    /**
+     * Gets person.
+     *
+     * @return the person
+     */
     public Person getPerson() {
         return person;
     }
 
+    /**
+     * Sets person.
+     *
+     * @param person the person
+     */
     public void setPerson(Person person) {
         this.person = person;
     }
 
+    /**
+     * Gets city.
+     *
+     * @return the city
+     */
     public City getCity() {
         return city;
     }
 
+    /**
+     * Sets city.
+     *
+     * @param city the city
+     */
     public void setCity(City city) {
         this.city = city;
     }
 
+    /**
+     * Gets street.
+     *
+     * @return the street
+     */
     public String getStreet() {
         return street;
     }
 
+    /**
+     * Sets street.
+     *
+     * @param street the street
+     */
     public void setStreet(String street) {
         this.street = street;
     }
 
+    /**
+     * Gets house number.
+     *
+     * @return the house number
+     */
     public Integer getHouseNumber() {
         return houseNumber;
     }
 
+    /**
+     * Sets house number.
+     *
+     * @param houseNumber the house number
+     */
     public void setHouseNumber(Integer houseNumber) {
         this.houseNumber = houseNumber;
     }
 
+    /**
+     * Gets apartment.
+     *
+     * @return the apartment
+     */
     public Integer getApartment() {
         return apartment;
     }
 
+    /**
+     * Sets apartment.
+     *
+     * @param apartment the apartment
+     */
     public void setApartment(Integer apartment) {
         this.apartment = apartment;
     }

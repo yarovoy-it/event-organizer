@@ -21,6 +21,7 @@
         <hibernate.validator>6.0.16.Final</hibernate.validator>
         <javax.servlet>4.0.1</javax.servlet>
         <jackson.core>2.9.9</jackson.core>
+        <org.apache.commons>4.2</org.apache.commons>
         <logback>1.2.3</logback>
         <jjwt>0.9.1</jjwt>
         <dozer>5.5.1</dozer>
@@ -44,6 +45,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${org.spring.core}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${org.apache.commons}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

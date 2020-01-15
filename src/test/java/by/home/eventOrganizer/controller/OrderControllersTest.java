@@ -96,7 +96,7 @@ public class OrderControllersTest {
                 "            \"surname\": \"Melnik\",\n" +
                 "            \"phoneNumber\": 375337468215,\n" +
                 "            \"address\": {\n" +
-//                "                \"id\": 51,\n" +
+                "                \"id\": 51,\n" +
                 "                \"city\": \"GRODNO\",\n" +
                 "                \"street\": \"OrdDerzinskogo\",\n" +
                 "                \"houseNumber\": 205,\n" +
@@ -107,9 +107,9 @@ public class OrderControllersTest {
                 "        \"description\": \"nice and sexy\",\n" +
                 "        \"executeDate\": \"2020-01-12\",\n" +
                 "        \"address\": {\n" +
-//                "            \"id\": 50,\n" +
+                "            \"id\": 555,\n" +
                 "            \"city\": \"GRODNO\",\n" +
-                "            \"street\": \"OrdLimoza\",\n" +
+                "            \"street\": \"Pushkina\",\n" +
                 "            \"houseNumber\": 45,\n" +
                 "            \"apartment\": 145\n" +
                 "        }\n" +
