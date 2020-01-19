@@ -130,7 +130,6 @@ public class OrderControllersTest {
                 "    }"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("106"))
                 .andExpect(jsonPath("$.address.city").value("GRODNO"))
                 .andExpect(jsonPath("$.address.street").value("Pushkwina"))
                 .andReturn();
