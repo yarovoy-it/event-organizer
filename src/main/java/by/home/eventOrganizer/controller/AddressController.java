@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Address controller.
+ */
 @RestController
 @RequestMapping("/address")
 public class AddressController {
@@ -22,11 +25,22 @@ public class AddressController {
 
     private final AddressService addressService;
 
+    /**
+     * Instantiates a new Address controller.
+     *
+     * @param mapper         the mapper
+     * @param addressService the address service
+     */
     public AddressController(Mapper mapper, AddressService addressService) {
         this.mapper = mapper;
         this.addressService = addressService;
     }
 
+    /**
+     * Get all response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping
     public ResponseEntity<List<AddressDto>> getAll(){
         final List<Address> addresses = addressService.findAll();
@@ -36,12 +50,24 @@ public class AddressController {
         return new ResponseEntity<>(addressDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Gets one.
+     *
+     * @param id the id
+     * @return the one
+     */
     @GetMapping(value = "/{id}")
     public ResponseEntity<AddressDto> getOne(@PathVariable Long id) {
         final AddressDto addressDto = mapper.map(addressService.findById(id), AddressDto.class);
         return new ResponseEntity<>(addressDto, HttpStatus.OK);
     }
 
+    /**
+     * Save response entity.
+     *
+     * @param addressDto the address dto
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<AddressDto> save(@Valid @RequestBody AddressDto addressDto) {
         addressDto.setId(null);
@@ -49,6 +75,13 @@ public class AddressController {
         return new ResponseEntity<>(responseAddressDto, HttpStatus.OK);
     }
 
+    /**
+     * Update response entity.
+     *
+     * @param addressDto the address dto
+     * @param id         the id
+     * @return the response entity
+     */
     @PutMapping(value = "/{id}")
     public ResponseEntity<AddressDto> update(@Valid @RequestBody AddressDto addressDto, @PathVariable Long id) {
         if (!Objects.equals(id, addressDto.getId())) {
@@ -58,6 +91,11 @@ public class AddressController {
         return new ResponseEntity<>(responseAddressDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete.
+     *
+     * @param id the id
+     */
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {

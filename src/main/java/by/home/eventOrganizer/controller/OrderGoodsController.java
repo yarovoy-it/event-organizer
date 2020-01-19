@@ -2,10 +2,7 @@ package by.home.eventOrganizer.controller;
 
 import by.home.eventOrganizer.dto.detail.OrderResponseDto;
 import by.home.eventOrganizer.dto.detail.OrderSupplementDto;
-import by.home.eventOrganizer.model.detail.Order;
-import by.home.eventOrganizer.model.goods.Beverage;
 import by.home.eventOrganizer.service.detail.OrderService;
-import by.home.eventOrganizer.service.goods.GoodsService;
 import org.dozer.Mapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
+/**
+ * The type Order goods controller.
+ */
 @RestController
 @RequestMapping("/order-goods")
 public class OrderGoodsController {
@@ -27,33 +24,26 @@ public class OrderGoodsController {
 
     private final OrderService orderService;
 
-    private final GoodsService goodsService;
-
-    public OrderGoodsController(Mapper mapper, OrderService orderService, GoodsService goodsService) {
+    /**
+     * Instantiates a new Order goods controller.
+     *
+     * @param mapper       the mapper
+     * @param orderService the order service
+     */
+    public OrderGoodsController(Mapper mapper, OrderService orderService) {
         this.mapper = mapper;
         this.orderService = orderService;
-        this.goodsService = goodsService;
     }
 
+    /**
+     * Update response entity.
+     *
+     * @param orderDto the order dto
+     * @return the response entity
+     */
     @PutMapping
     public ResponseEntity<OrderResponseDto> update(@Valid @RequestBody OrderSupplementDto orderDto) {
-        if (orderService.existsById(orderDto.getOrderId())) {
-            Order order = orderService.findById(orderDto.getOrderId());
-            Set<Beverage> beverages = new HashSet<>();
-            for (Map.Entry<String, Integer> entry : orderDto.getBeverageNameCount().entrySet()) {
-                Beverage beverage = (Beverage) goodsService.findByName(entry.getKey()).stream()
-                        .findFirst()
-                        .orElseThrow(() -> new RuntimeException("dont find goods"))
-                        .clone();
-                beverage.setId(null);
-                beverage.setCount(entry.getValue());
-                beverages.add(beverage);
-            }
-            order.setBeverages(beverages);
-            final OrderResponseDto responseOrderDto = mapper.map(orderService.update(order), OrderResponseDto.class);
-            return new ResponseEntity<>(responseOrderDto, HttpStatus.OK);
-        } else {
-            throw new RuntimeException("we cant find this order");
-        }
+        final OrderResponseDto responseOrderDto = mapper.map(orderService.updateOrderGoods(orderDto.getOrderId(), orderDto.getNameCount()), OrderResponseDto.class);
+        return new ResponseEntity<>(responseOrderDto, HttpStatus.OK);
     }
 }

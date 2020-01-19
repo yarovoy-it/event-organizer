@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Customer controller.
+ */
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -22,11 +25,22 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
+    /**
+     * Instantiates a new Customer controller.
+     *
+     * @param mapper          the mapper
+     * @param customerService the customer service
+     */
     public CustomerController(Mapper mapper, CustomerService customerService) {
         this.mapper = mapper;
         this.customerService = customerService;
     }
 
+    /**
+     * Gets all.
+     *
+     * @return the all
+     */
     @GetMapping
     public ResponseEntity<List<CustomerDto>> getAll() {
         final List<Customer> goodsAll = customerService.findAllWithFetch();
@@ -36,21 +50,39 @@ public class CustomerController {
         return new ResponseEntity<>(customerDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Gets by phone.
+     *
+     * @param number the number
+     * @return the by phone
+     */
     @GetMapping(value = "/phone/{number}")
-    public ResponseEntity<List<CustomerDto>> getByPhone(@PathVariable Long number) {
-        final List<Customer> goodsByPhone = customerService.findByPhoneNumber(number);
-        final List<CustomerDto> customerDto = goodsByPhone.stream()
-                .map((goods) -> mapper.map(goods, CustomerDto.class))
-                .collect(Collectors.toList());
+    public ResponseEntity<CustomerDto> getByPhone(@PathVariable Long number) {
+        Customer customer = null;
+        if (customerService.findByPhoneNumber(number).isPresent())
+            customer = customerService.findByPhoneNumber(number).get();
+        final CustomerDto customerDto = mapper.map(customer, CustomerDto.class);
         return new ResponseEntity<>(customerDto, HttpStatus.OK);
     }
 
+    /**
+     * Gets one.
+     *
+     * @param id the id
+     * @return the one
+     */
     @GetMapping(value = "/{id}")
     public ResponseEntity<CustomerDto> getOne(@PathVariable Long id) {
         final CustomerDto customerDto = mapper.map(customerService.findById(id), CustomerDto.class);
         return new ResponseEntity<>(customerDto, HttpStatus.OK);
     }
 
+    /**
+     * Save response entity.
+     *
+     * @param customerDto the customer dto
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<CustomerDto> save(@Valid @RequestBody @NotNull CustomerDto customerDto) {
         customerDto.setId(null);
@@ -59,6 +91,13 @@ public class CustomerController {
         return new ResponseEntity<>(responseCustomerDto, HttpStatus.OK);
     }
 
+    /**
+     * Update response entity.
+     *
+     * @param customerDto the customer dto
+     * @param id          the id
+     * @return the response entity
+     */
     @PutMapping(value = "/{id}")
     public ResponseEntity<CustomerDto> update(@Valid @RequestBody CustomerDto customerDto, @PathVariable Long id) {
         if (!Objects.equals(id, customerDto.getId())) {
@@ -68,6 +107,11 @@ public class CustomerController {
         return new ResponseEntity<>(responseCustomerDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete.
+     *
+     * @param id the id
+     */
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {

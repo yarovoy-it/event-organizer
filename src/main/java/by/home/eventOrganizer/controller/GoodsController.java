@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * The type Goods controller.
+ */
 @RestController
 @RequestMapping("/goods")
 public class GoodsController {
@@ -21,11 +24,22 @@ public class GoodsController {
 
     private final GoodsService goodsService;
 
+    /**
+     * Instantiates a new Goods controller.
+     *
+     * @param mapper       the mapper
+     * @param goodsService the goods service
+     */
     public GoodsController(Mapper mapper, GoodsService goodsService) {
         this.mapper = mapper;
         this.goodsService = goodsService;
     }
 
+    /**
+     * Gets all.
+     *
+     * @return the all
+     */
     @GetMapping
     public ResponseEntity<List<GoodsDto>> getAll() {
         final List<Goods> goodsAll = goodsService.findAll();
@@ -35,12 +49,24 @@ public class GoodsController {
         return new ResponseEntity<>(goodsDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Gets one.
+     *
+     * @param id the id
+     * @return the one
+     */
     @GetMapping(value = "/{id}")
     public ResponseEntity<GoodsDto> getOne(@PathVariable Long id) {
         final GoodsDto beverageDto = mapper.map(goodsService.findById(id), GoodsDto.class);
         return new ResponseEntity<>(beverageDto, HttpStatus.OK);
     }
 
+    /**
+     * Save response entity.
+     *
+     * @param goodsDto the goods dto
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<GoodsDto> save(@Valid @RequestBody GoodsDto goodsDto) {
         goodsDto.setId(null);
@@ -48,6 +74,13 @@ public class GoodsController {
         return new ResponseEntity<>(responseGoodsDto, HttpStatus.OK);
     }
 
+    /**
+     * Update response entity.
+     *
+     * @param goodsDto the goods dto
+     * @param id       the id
+     * @return the response entity
+     */
     @PutMapping(value = "/{id}")
     public ResponseEntity<GoodsDto> update(@Valid @RequestBody GoodsDto goodsDto, @PathVariable Long id) {
         if (!Objects.equals(id, goodsDto.getId())) {
@@ -57,6 +90,11 @@ public class GoodsController {
         return new ResponseEntity<>(responseGoodsDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete.
+     *
+     * @param id the id
+     */
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {

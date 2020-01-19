@@ -22,12 +22,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Customer controller test.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {TestWebConfiguration.class})
 @WebAppConfiguration
 @Transactional
 public class CustomerControllerTest {
 
+    /**
+     * The constant APPLICATION_JSON_UTF8.
+     */
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
     @Autowired
@@ -35,11 +41,47 @@ public class CustomerControllerTest {
 
     private MockMvc mockMvc;
 
+    /**
+     * Sets .
+     */
     @BeforeEach
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
+    /**
+     * Test save duplicate phone.
+     *
+     * @throws Exception the exception
+     */
+    @Test
+    public void testSaveDuplicatePhone() throws Exception {
+        mockMvc.perform(post("/customer").contentType(APPLICATION_JSON_UTF8).content("{\n" +
+                "        \"id\": 24,\n" +
+                "        \"name\": \"Mania\",\n" +
+                "        \"surname\": \"Golovach\",\n" +
+                "        \"phoneNumber\": 375337832475,\n" +
+                "        \"address\": {\n" +
+                "            \"id\": 5,\n" +
+                "            \"city\": \"GRODNO\",\n" +
+                "            \"street\": \"Pushkina\",\n" +
+                "            \"houseNumber\": 34,\n" +
+                "            \"apartment\": 28\n" +
+                "        },\n" +
+                "        \"department\": \"PLANNER\",\n" +
+                "        \"salary\": 40.5\n" +
+                "    }"))
+                .andDo(print())
+                .andExpect(status().is5xxServerError())
+                .andExpect(jsonPath("$.message").isEmpty())
+                .andReturn();
+    }
+
+    /**
+     * Test save address.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testSaveAddress() throws Exception {
         mockMvc.perform(post("/customer").contentType(APPLICATION_JSON_UTF8).content("{\n" +

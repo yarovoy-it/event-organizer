@@ -1,7 +1,6 @@
 package by.home.eventOrganizer.service.human.impl;
 
 import by.home.eventOrganizer.component.LocalizedMessageSource;
-import by.home.eventOrganizer.component.Util;
 import by.home.eventOrganizer.model.human.Customer;
 import by.home.eventOrganizer.repository.human.CustomerRepository;
 import by.home.eventOrganizer.service.detail.AddressService;
@@ -10,9 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
+import static by.home.eventOrganizer.component.Util.validate;
+
+/**
+ * The type Customer service.
+ */
 @Service
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
@@ -23,13 +26,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    private final Util util;
-
-    public CustomerServiceImpl(LocalizedMessageSource localizedMessageSource, AddressService addressRepository, CustomerRepository customerRepository, Util util) {
+    /**
+     * Instantiates a new Customer service.
+     *
+     * @param localizedMessageSource the localized message source
+     * @param addressRepository      the address repository
+     * @param customerRepository     the customer repository
+     */
+    public CustomerServiceImpl(LocalizedMessageSource localizedMessageSource, AddressService addressRepository, CustomerRepository customerRepository) {
         this.localizedMessageSource = localizedMessageSource;
         this.addressRepository = addressRepository;
         this.customerRepository = customerRepository;
-        this.util = util;
     }
 
     @Override
@@ -44,25 +51,23 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> findByAddressStreet(String name) {
-        util.validate(name == null, "error.person.address.name.null");
+        validate(name == null, "error.person.address.name.null");
         List<Customer> customers = customerRepository.findByAddressStreet(name);
-        util.validate(customers == null, "error.person.address.notFound");
+        validate(customers == null, "error.person.address.notFound");
         return customers;
     }
 
     @Override
-    public List<Customer> findByPhoneNumber(Long number) {
-        util.validate(number == null, "error.person.number.null");
-        List<Customer> customers = customerRepository.findByPhoneNumber(number);
-        util.validate(customers == null, "error.person.number.notFound");
-        return customers;
+    public Optional<Customer> findByPhoneNumber(Long number) {
+        validate(number == null, "error.person.number.null");
+        return customerRepository.findByPhoneNumber(number);
     }
 
     @Override
     public List<Customer> findByNameOrSurname(String name, String surname) {
-        util.validate(name != null && surname != null, "error.person.name.surname.null");
+        validate(name != null && surname != null, "error.person.name.surname.null");
         List<Customer> customers = customerRepository.findByNameOrSurname(name, surname);
-        util.validate(customers == null, "error.person.name.surname.notFound");
+        validate(customers == null, "error.person.name.surname.notFound");
         return customers;
     }
 
@@ -79,12 +84,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer save(Customer customer) {
-        util.validate(customer.getName() == null || customer.getPhoneNumber() == null, "error.customer.null");
-        util.validate(util.uniqueNumber(customer), "error.person.phone.notUnique");
+        validate(customer.getName() == null || customer.getPhoneNumber() == null, "error.customer.null");
+        validate(findByPhoneNumber(customer.getPhoneNumber()).isPresent(), "error.person.phone.notUnique");
         if (customer.getAddress() != null) {
-            List<Customer> staffStreet = findByAddressStreet(customer.getAddress().getStreet()).stream()
-                    .filter(st -> Objects.equals(st.getAddress().getId(), customer.getAddress().getId())).collect(Collectors.toList());
-            util.validate(staffStreet.size() == 1, "error.person.address.notUnique");
             addressRepository.save(customer.getAddress());
         }
         return customerRepository.save(customer);
@@ -93,16 +95,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer update(Customer customer) {
         final Long id = customer.getId();
-        util.validate(id == null, "error.person.haveId");
-        final List<Customer> duplicatePerson = customerRepository.findByPhoneNumber(customer.getPhoneNumber());
-        util.validate(duplicatePerson.size() < 1, "error.person.notUnique");
+        validate(id == null, "error.person.haveId");
+        findByPhoneNumber(customer.getPhoneNumber())
+                .orElseThrow(() -> new RuntimeException(localizedMessageSource.getMessage("error.customer.notExist", new Object[]{})));
         findById(id);
         return customerRepository.saveAndFlush(customer);
     }
 
     @Override
     public void delete(Customer customer) {
-        util.validate(customer == null, "error.person.haveId");
+        validate(customer == null, "error.person.haveId");
         customerRepository.delete(customer);
     }
 

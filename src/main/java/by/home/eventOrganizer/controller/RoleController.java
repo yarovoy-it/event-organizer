@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ * The type Role controller.
+ */
 @RestController
 @RequestMapping("/roles")
 public class RoleController {
@@ -18,11 +21,23 @@ public class RoleController {
 
     private final RoleService roleService;
 
+    /**
+     * Instantiates a new Role controller.
+     *
+     * @param mapper      the mapper
+     * @param roleService the role service
+     */
     public RoleController(Mapper mapper, RoleService roleService) {
         this.mapper = mapper;
         this.roleService = roleService;
     }
 
+    /**
+     * Save response entity.
+     *
+     * @param roleDto the role dto
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<RoleDto> save(@Valid @RequestBody RoleDto roleDto) {
         roleDto.setId(null);
@@ -30,6 +45,11 @@ public class RoleController {
         return new ResponseEntity<>(responseRoleDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete.
+     *
+     * @param id the id
+     */
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {

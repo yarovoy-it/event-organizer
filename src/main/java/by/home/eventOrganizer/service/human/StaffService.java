@@ -4,6 +4,7 @@ import by.home.eventOrganizer.model.human.Staff;
 import by.home.eventOrganizer.model.human.enums.Department;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -20,13 +21,14 @@ public interface StaffService {
      */
     List<Staff> findByAddressStreet(String name);
 
+
     /**
-     * Find by phone number list.
+     * Find staff by phone number optional.
      *
      * @param number the number
-     * @return the list
+     * @return the optional
      */
-    List<Staff> findByPhoneNumber(Long number);
+    Optional<Staff> findByPhoneNumber(Long number);
 
     /**
      * Find by name or surname list.
@@ -58,15 +60,6 @@ public interface StaffService {
      * @return the list
      */
     List<Staff> findAll();
-
-
-    /**
-     * Find all with fetch address.
-     * used HQL
-     *
-     * @return the list of staff
-     */
-    List<Staff> findAllWithFetch();
 
     /**
      * Find by department list.

@@ -22,12 +22,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Goods controller test.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {TestWebConfiguration.class})
 @WebAppConfiguration
 @Transactional
 public class GoodsControllerTest {
 
+    /**
+     * The constant APPLICATION_JSON_UTF8.
+     */
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
     @Autowired
@@ -35,11 +41,19 @@ public class GoodsControllerTest {
 
     private MockMvc mockMvc;
 
+    /**
+     * Sets .
+     */
     @BeforeEach
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
+    /**
+     * Test get one exist.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testGetOneExist() throws Exception {
         mockMvc.perform(get("/goods/28"))
@@ -51,6 +65,11 @@ public class GoodsControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get one not exist.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testGetOneNotExist() throws Exception {
         mockMvc.perform(get("/goods/43"))
@@ -60,6 +79,11 @@ public class GoodsControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get all.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testGetAll() throws Exception {
         mockMvc.perform(get("/goods"))
@@ -77,15 +101,25 @@ public class GoodsControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test put one not exist.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testPutOneNotExist() throws Exception {
         mockMvc.perform(put("/goods/43").contentType(APPLICATION_JSON_UTF8).content("{\"id\":43,\"name\":\"Plastic\",\"type\":\"Fork\"}"))
                 .andDo(print())
                 .andExpect(status().is5xxServerError())
-                .andExpect(jsonPath("$.message").value("error.goods.NotExist"))
+                .andExpect(jsonPath("$.message").value("Goods doesn't exist!"))
                 .andReturn();
     }
 
+    /**
+     * Test save.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testSave() throws Exception {
         mockMvc.perform(post("/goods").contentType(APPLICATION_JSON_UTF8).content("{\"id\": 301,\"name\": \"testHultafors\", \"type\": \"testKnife\",\"count\": 500, \"price\": 0.65}"))

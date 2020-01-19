@@ -3,6 +3,7 @@ package by.home.eventOrganizer.service.detail;
 import by.home.eventOrganizer.model.detail.Order;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * The interface Order service.
@@ -17,6 +18,24 @@ public interface OrderService {
      */
     List<Order> fetchesAll();
 
+
+    /**
+     * Update order goods order.
+     *
+     * @param orderId  the order id
+     * @param mapGoods the map goods
+     * @return the order
+     */
+    Order updateOrderGoods(Long orderId, Map<String, Integer> mapGoods);
+
+    /**
+     * Update order beverages order.
+     *
+     * @param orderId      the order id
+     * @param mapBeverages the map beverages
+     * @return the order
+     */
+    Order updateOrderBeverages(Long orderId, Map<String, Integer> mapBeverages);
 
     /**
      * Fetches by id order.

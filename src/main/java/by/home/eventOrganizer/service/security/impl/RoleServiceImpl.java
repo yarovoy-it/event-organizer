@@ -10,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 
+import static by.home.eventOrganizer.component.Util.validate;
+
+/**
+ * The type Role service.
+ */
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {
@@ -18,6 +23,12 @@ public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
 
+    /**
+     * Instantiates a new Role service.
+     *
+     * @param localizedMessageSource the localized message source
+     * @param roleRepository         the role repository
+     */
     public RoleServiceImpl(LocalizedMessageSource localizedMessageSource, RoleRepository roleRepository) {
         this.localizedMessageSource = localizedMessageSource;
         this.roleRepository = roleRepository;
@@ -65,11 +76,5 @@ public class RoleServiceImpl implements RoleService {
     public void deleteById(Long id) {
         validate(findById(id)==null, "error.role.notFind");
         roleRepository.deleteById(id);
-    }
-
-    private void validate(boolean expression, String errorMessage) {
-        if (expression) {
-            throw new RuntimeException(localizedMessageSource.getMessage(errorMessage, new Object[]{}));
-        }
     }
 }

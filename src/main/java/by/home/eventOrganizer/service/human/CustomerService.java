@@ -3,6 +3,7 @@ package by.home.eventOrganizer.service.human;
 import by.home.eventOrganizer.model.human.Customer;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -33,13 +34,14 @@ public interface CustomerService {
      */
     List<Customer> findByAddressStreet(String name);
 
+
     /**
-     * Find customer by phone number list.
+     * Find customer by phone number optional.
      *
      * @param number the number
-     * @return the list
+     * @return the optional
      */
-    List<Customer> findByPhoneNumber(Long number);
+    Optional<Customer> findByPhoneNumber(Long number);
 
     /**
      * Find customer by name or surname list.

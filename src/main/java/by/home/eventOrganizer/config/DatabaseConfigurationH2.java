@@ -1,4 +1,4 @@
-package by.home.eventOrganizer.configuration;
+package by.home.eventOrganizer.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -18,19 +18,19 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * The type Test database configuration.
+ * The type Database configuration h2.
  */
-@PropertySource("classpath:testDatabase.properties")
+@PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {
         "by.home.eventOrganizer.repository"
 })
-public class TestDatabaseConfiguration {
+public class DatabaseConfigurationH2 {
 
-    @Value("${connection.driver_class}")
+    @Value("${connection.driver_class.h2}")
     private String driverClass;
 
-    @Value("${connection.url}")
+    @Value("${connection.url.h2}")
     private String url;
 
 

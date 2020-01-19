@@ -22,6 +22,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Test web configuration.
+ */
 @Configuration
 @ComponentScan(basePackages = "by.home.eventOrganizer")
 @EnableWebMvc
@@ -35,6 +38,11 @@ public class TestWebConfiguration implements WebMvcConfigurer, ApplicationContex
         this.applicationContext = applicationContext;
     }
 
+    /**
+     * Mapper mapper.
+     *
+     * @return the mapper
+     */
     @Bean
     public Mapper mapper() {
         DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
@@ -54,6 +62,11 @@ public class TestWebConfiguration implements WebMvcConfigurer, ApplicationContex
         };
     }
 
+    /**
+     * Local validator factory bean local validator factory bean.
+     *
+     * @return the local validator factory bean
+     */
     @Bean
     public LocalValidatorFactoryBean localValidatorFactoryBean() {
         return new LocalValidatorFactoryBean();

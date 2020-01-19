@@ -13,6 +13,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * The type Security configuration.
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -24,6 +27,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
+    /**
+     * Instantiates a new Security configuration.
+     *
+     * @param tokenService       the token service
+     * @param userDetailsService the user details service
+     */
     public SecurityConfiguration(TokenService tokenService, UserDetailsService userDetailsService) {
         this.tokenService = tokenService;
         this.userDetailsService = userDetailsService;
@@ -50,6 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.POST, "/customers/**").hasAnyRole(USER, ADMIN)
                 .mvcMatchers(HttpMethod.POST, "/beverages/**", "/staff/**", "/goods/**", "/roles/**", "/address/**").hasRole(ADMIN)
                 .mvcMatchers(HttpMethod.PUT, "/beverages/**", "/staff/**", "/goods/**").hasRole(ADMIN)
+                .mvcMatchers(HttpMethod.PUT, "/orders-beverage/**", "/order-goods/**").hasAnyRole(USER, ADMIN)
                 .mvcMatchers(HttpMethod.DELETE, "/beverages/**", "/staff/**", "/goods/**", "/roles/**", "/address/**").hasRole(ADMIN);
         final AuthenticationTokenFilter filter = new AuthenticationTokenFilter(tokenService, userDetailsService);
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);

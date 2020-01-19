@@ -87,3 +87,4 @@ INSERT INTO orders_staff (order_id, staff_id) VALUES (101, 19);
 
 INSERT INTO roles (id, name) VALUES (9675,'ROLE_USER');
 INSERT INTO roles (id ,name) VALUES (4563,'ROLE_ADMIN');
+

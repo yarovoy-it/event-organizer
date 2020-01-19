@@ -27,7 +27,7 @@ public abstract class Person extends BaseEntity {
     @NotNull(message = "{person.phoneNumber.notNull}")
     private Long phoneNumber;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", unique = true)
     private Address address;
 

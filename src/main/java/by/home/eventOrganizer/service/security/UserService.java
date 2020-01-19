@@ -3,6 +3,7 @@ package by.home.eventOrganizer.service.security;
 import by.home.eventOrganizer.model.security.User;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * The interface User service.
@@ -61,4 +62,14 @@ public interface UserService {
      * @param id the id
      */
     void deleteById(Long id);
+
+    /**
+     * Registration new user.
+     *
+     * @param name     the name
+     * @param password the password
+     * @param roles    the roles
+     * @return the user
+     */
+    User registration(String name, String password, Set<String> roles);
 }

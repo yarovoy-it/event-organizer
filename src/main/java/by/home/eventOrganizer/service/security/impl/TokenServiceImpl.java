@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+/**
+ * The type Token service.
+ */
 @Service
 public class TokenServiceImpl implements TokenService {
 
@@ -32,11 +35,6 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String generate(Authentication authentication) {
         return generate(((AuthenticationUserDetails) authentication.getPrincipal()).getUsername());
-    }
-
-    @Override
-    public String refresh(String token) {
-        return generate(extractUsername(token));
     }
 
     @Override

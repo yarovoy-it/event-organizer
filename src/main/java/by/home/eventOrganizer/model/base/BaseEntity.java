@@ -1,20 +1,18 @@
 package by.home.eventOrganizer.model.base;
 
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 
 /**
  * The type Base entity.
  */
 @MappedSuperclass
+@SequenceGenerator(name = "sequence", sequenceName = "sequence_base", initialValue = 110)
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
     private Long id;
 
     /**

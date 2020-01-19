@@ -16,15 +16,16 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "orders")
+@SequenceGenerator(name = "sequence", sequenceName = "sequence_order", initialValue = 5)
 public class Order extends BaseEntity {
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "orders_goods",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "goods_id")})
     private Set<Goods> goods;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "orders_beverages",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "beverage_id")})
@@ -50,7 +51,7 @@ public class Order extends BaseEntity {
     private LocalDate executeDate;
 
     @NotNull(message = "{order.address.notNull}")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     private Address address;
 

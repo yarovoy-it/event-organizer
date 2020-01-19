@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "addresses")
+@SequenceGenerator(name = "sequence", sequenceName = "sequence_address", initialValue = 110)
 public class Address extends BaseEntity {
 
     @Enumerated(EnumType.STRING)

@@ -12,11 +12,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * The type Authentication token filter.
+ */
 public class AuthenticationTokenFilter extends OncePerRequestFilter {
 
     private static final String AUTHORIZATION = "Authorization";
@@ -26,13 +28,19 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
     private TokenService tokenService;
     private UserDetailsService userDetailsService;
 
+    /**
+     * Instantiates a new Authentication token filter.
+     *
+     * @param tokenService       the token service
+     * @param userDetailsService the user details service
+     */
     public AuthenticationTokenFilter(TokenService tokenService, UserDetailsService userDetailsService) {
         this.tokenService = tokenService;
         this.userDetailsService = userDetailsService;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException {
         try {
             String token = getToken(request);
             if (token != null && tokenService.validate(token)) {

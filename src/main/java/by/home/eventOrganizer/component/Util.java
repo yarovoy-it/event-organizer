@@ -1,31 +1,30 @@
 package by.home.eventOrganizer.component;
 
-import by.home.eventOrganizer.model.human.Person;
-import by.home.eventOrganizer.repository.human.PersonRepository;
-import org.springframework.stereotype.Component;
+/**
+ * The type Util.
+ */
 
-import java.util.List;
-
-@Component
 public class Util {
 
-    private final LocalizedMessageSource localizedMessageSource;
+    private static LocalizedMessageSource localizedMessageSource;
 
-    private final PersonRepository personRepository;
-
-    public Util(LocalizedMessageSource localizedMessageSource, PersonRepository personRepository) {
+    /**
+     * Instantiates a new Util.
+     *
+     * @param localizedMessageSource the localized message source
+     */
+    public Util(LocalizedMessageSource localizedMessageSource) {
         this.localizedMessageSource = localizedMessageSource;
-        this.personRepository = personRepository;
+
     }
 
-    public Boolean uniqueNumber(Person person) {
-        List<Person> customers = personRepository.findByPhoneNumber(person.getPhoneNumber());
-        Boolean notUniquePhone = customers.stream()
-                .anyMatch(st -> st.getPhoneNumber().equals(person.getPhoneNumber()));
-        return notUniquePhone;
-    }
-
-    public void validate(boolean expression, String errorMessage) {
+    /**
+     * Validate.
+     *
+     * @param expression   the expression
+     * @param errorMessage the error message
+     */
+    public static void validate(boolean expression, String errorMessage) {
         if (expression) {
             throw new RuntimeException(localizedMessageSource.getMessage(errorMessage, new Object[]{}));
         }

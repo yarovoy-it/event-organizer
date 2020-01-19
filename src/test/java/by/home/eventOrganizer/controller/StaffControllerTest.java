@@ -23,12 +23,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * The type Staff controller test.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {TestWebConfiguration.class})
 @WebAppConfiguration
 @Transactional
 public class StaffControllerTest {
 
+    /**
+     * The constant APPLICATION_JSON_UTF8.
+     */
     public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
     @Autowired
@@ -36,18 +42,26 @@ public class StaffControllerTest {
 
     private MockMvc mockMvc;
 
+    /**
+     * Sets .
+     */
     @BeforeEach
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
+    /**
+     * Test save duplicate staff.
+     *
+     * @throws Exception the exception
+     */
     @Test
-    public void testSaveDuplicateAddress() throws Exception {
+    public void testSaveDuplicateStaff() throws Exception {
         mockMvc.perform(post("/staff").contentType(APPLICATION_JSON_UTF8).content("{\n" +
                 "        \"id\": 24,\n" +
                 "        \"name\": \"testStaff\",\n" +
                 "        \"surname\": \"testStaff\",\n" +
-                "        \"phoneNumber\": 3752922223,\n" +
+                "        \"phoneNumber\": 375297272387,\n" +
                 "        \"address\": {\n" +
                 "            \"id\": 5,\n" +
                 "            \"city\": \"GRODNO\",\n" +
@@ -60,10 +74,15 @@ public class StaffControllerTest {
                 "    }"))
                 .andDo(print())
                 .andExpect(status().is5xxServerError())
-                .andExpect(jsonPath("$.message").value("Person with this address already exist!"))
+                .andExpect(jsonPath("$.message").isEmpty())
                 .andReturn();
     }
 
+    /**
+     * Test save address.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testSaveAddress() throws Exception {
         mockMvc.perform(post("/staff").contentType(APPLICATION_JSON_UTF8).content("{\n" +
@@ -93,6 +112,11 @@ public class StaffControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test save null address.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testSaveNullAddress() throws Exception {
         mockMvc.perform(post("/staff").contentType(APPLICATION_JSON_UTF8).content("{\n" +
@@ -113,6 +137,11 @@ public class StaffControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get all null address.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testGetAllNullAddress() throws Exception {
         mockMvc.perform(get("/staff"))
@@ -124,6 +153,11 @@ public class StaffControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get all.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testGetAll() throws Exception {
         mockMvc.perform(get("/staff"))
@@ -140,6 +174,11 @@ public class StaffControllerTest {
                 .andReturn();
     }
 
+    /**
+     * Test get by department.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void testGetByDepartment() throws Exception {
         mockMvc.perform(get("/staff/dep/waiter"))

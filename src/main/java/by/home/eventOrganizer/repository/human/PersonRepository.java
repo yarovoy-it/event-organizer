@@ -4,6 +4,7 @@ import by.home.eventOrganizer.model.human.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The interface Person repository.
@@ -11,7 +12,6 @@ import java.util.List;
  * @param <T>  the type parameter have to be child from person
  * @param <ID> the type parameter
  */
-
 public interface PersonRepository<T extends Person, ID> extends JpaRepository<T, ID> {
 
     /**
@@ -32,13 +32,13 @@ public interface PersonRepository<T extends Person, ID> extends JpaRepository<T,
      */
     List<T> findByAddressStreet(String name);
 
+
     /**
-     * Find abstract person by phone number list.
+     * Find by phone number Person.
      *
-     * @param number the phone number of
-     *               person
-     * @return the list
+     * @param number the number
+     * @return the t
      */
-    List<T> findByPhoneNumber(Long number);
+    Optional<T> findByPhoneNumber(Long number);
 
 }

@@ -15,6 +15,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 
+/**
+ * The type Staff controller.
+ */
 @RestController
 @RequestMapping("/staff")
 public class StaffController {
@@ -23,12 +26,24 @@ public class StaffController {
 
     private final StaffService staffService;
 
+    /**
+     * Instantiates a new Staff controller.
+     *
+     * @param mapper       the mapper
+     * @param staffService the staff service
+     */
     public StaffController(Mapper mapper, StaffService staffService) {
         this.mapper = mapper;
         this.staffService = staffService;
 
     }
 
+    /**
+     * Gets by department.
+     *
+     * @param department the department
+     * @return the by department
+     */
     @GetMapping(value = "/dep/{department}")
     public ResponseEntity<List<StaffDto>> getByDepartment(@PathVariable String department) {
         Department departEnum = Department.valueOf(department.toUpperCase());
@@ -39,6 +54,11 @@ public class StaffController {
         return new ResponseEntity<>(staffDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Gets all.
+     *
+     * @return the all
+     */
     @GetMapping
     public ResponseEntity<List<StaffDto>> getAll() {
         final List<Staff> staffAll = staffService.findAll();
@@ -48,6 +68,12 @@ public class StaffController {
         return new ResponseEntity<>(staffDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Gets one.
+     *
+     * @param street the street
+     * @return the one
+     */
     @GetMapping(value = "/street/{street}")
     public ResponseEntity<List<StaffDto>> getOne(@PathVariable String street) {
         final List<Staff> staffStreet = staffService.findByAddressStreet(street);
@@ -57,12 +83,24 @@ public class StaffController {
         return new ResponseEntity<>(staffDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Gets one.
+     *
+     * @param id the id
+     * @return the one
+     */
     @GetMapping(value = "/{id}")
     public ResponseEntity<StaffDto> getOne(@PathVariable Long id) {
         final StaffDto staffDto = mapper.map(staffService.findById(id), StaffDto.class);
         return new ResponseEntity<>(staffDto, HttpStatus.OK);
     }
 
+    /**
+     * Save response entity.
+     *
+     * @param staffDto the staff dto
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<StaffDto> save(@Valid @RequestBody StaffDto staffDto) {
         staffDto.setId(null);
@@ -70,6 +108,13 @@ public class StaffController {
         return new ResponseEntity<>(responseStaffDto, HttpStatus.OK);
     }
 
+    /**
+     * Update response entity.
+     *
+     * @param staffDto the staff dto
+     * @param id       the id
+     * @return the response entity
+     */
     @PutMapping(value = "/{id}")
     public ResponseEntity<StaffDto> update(@Valid @RequestBody StaffDto staffDto, @PathVariable Long id) {
         if (!Objects.equals(id, staffDto.getId())) {
@@ -79,6 +124,11 @@ public class StaffController {
         return new ResponseEntity<>(responseStaffDto, HttpStatus.OK);
     }
 
+    /**
+     * Delete.
+     *
+     * @param id the id
+     */
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void delete(@PathVariable Long id) {

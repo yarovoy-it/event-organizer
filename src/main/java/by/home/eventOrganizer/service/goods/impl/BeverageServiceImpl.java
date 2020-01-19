@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * The type Beverage service.
+ */
 @Service
 @Transactional
 public class BeverageServiceImpl implements BeverageService {
@@ -17,6 +20,12 @@ public class BeverageServiceImpl implements BeverageService {
 
     private final BeverageRepository beverageRepository;
 
+    /**
+     * Instantiates a new Beverage service.
+     *
+     * @param localizedMessageSource the localized message source
+     * @param beverageRepository     the beverage repository
+     */
     public BeverageServiceImpl(LocalizedMessageSource localizedMessageSource, BeverageRepository beverageRepository) {
         this.localizedMessageSource = localizedMessageSource;
         this.beverageRepository = beverageRepository;

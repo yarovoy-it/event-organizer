@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * The type Localized message source.
+ */
 @Component
 public class LocalizedMessageSource {
 
@@ -15,10 +18,22 @@ public class LocalizedMessageSource {
 
     private MessageSource messageSource;
 
+    /**
+     * Instantiates a new Localized message source.
+     *
+     * @param messageSource the message source
+     */
     LocalizedMessageSource(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
 
+    /**
+     * Get message string.
+     *
+     * @param messageCode the message code
+     * @param arguments   the arguments
+     * @return the string
+     */
     public String getMessage(String messageCode, Object[] arguments){
         Locale locale = LocaleContextHolder.getLocale();
         locale = localeList.contains(locale) ? locale : Locale.getDefault();

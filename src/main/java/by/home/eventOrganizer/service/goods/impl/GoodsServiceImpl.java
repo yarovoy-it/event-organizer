@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * The type Goods service.
+ */
 @Service
 @Transactional
 public class GoodsServiceImpl implements GoodsService {
@@ -17,6 +20,12 @@ public class GoodsServiceImpl implements GoodsService {
 
     private final GoodsRepository goodsRepository;
 
+    /**
+     * Instantiates a new Goods service.
+     *
+     * @param localizedMessageSource the localized message source
+     * @param goodsRepository        the goods repository
+     */
     public GoodsServiceImpl(LocalizedMessageSource localizedMessageSource, GoodsRepository goodsRepository) {
         this.localizedMessageSource = localizedMessageSource;
         this.goodsRepository = goodsRepository;

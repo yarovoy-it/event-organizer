@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * The type Address service.
+ */
 @Service
 @Transactional
 public class AddressServiceImpl implements AddressService {
@@ -17,6 +20,12 @@ public class AddressServiceImpl implements AddressService {
 
     private final AddressRepository addressRepository;
 
+    /**
+     * Instantiates a new Address service.
+     *
+     * @param localizedMessageSource the localized message source
+     * @param addressRepository      the address repository
+     */
     public AddressServiceImpl(LocalizedMessageSource localizedMessageSource, AddressRepository addressRepository) {
         this.localizedMessageSource = localizedMessageSource;
         this.addressRepository = addressRepository;
