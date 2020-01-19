@@ -1,0 +1,1765 @@
+{
+	"info": {
+		"_postman_id": "e863018e-87e9-4b04-9ed7-ed79ff9b777c",
+		"name": "event-organaizer-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "order-save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzNDIxMywiZXhwIjoxNTc5NDM0ODEzfQ.7Wl6kaNi5vNzobG2xm-thZrwm9y8YOqS_pSpaRxikCCrZlhu_RQJVJyf_xo1hIHGyShcXAhXlGHqZWT1KUbc4Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 999,\r\n        \"goods\": [\r\n            {\r\n                \"id\": 201,\r\n                \"name\": \"Hultafors\",\r\n                \"type\": \"Knife\",\r\n                \"count\": 500,\r\n                \"price\": 0.65\r\n            }\r\n        ],\r\n        \"beverages\": [\r\n            {\r\n                \"id\": 202,\r\n                \"name\": \"Patron\",\r\n                \"type\": \"Tequila\",\r\n                \"count\": 90,\r\n                \"price\": 120.0,\r\n                \"volume\": 1.0\r\n            },\r\n            {\r\n                \"id\": 203,\r\n                \"name\": \"Highland Park\",\r\n                \"type\": \"Whisky\",\r\n                \"count\": 85,\r\n                \"price\": 100.0,\r\n                \"volume\": 1.0\r\n            }\r\n        ],\r\n \r\n        \"customer\": {\r\n            \r\n        \"id\": 27,\r\n        \"name\": \"Viktor\",\r\n        \"surname\": \"Melnik\",\r\n        \"phoneNumber\": 375337850745,\r\n        \"address\": {\r\n            \"id\": 10,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"Derzinskogo\",\r\n            \"houseNumber\": 105,\r\n            \"apartment\": 74\r\n        },\r\n        \"discount\": 0\r\n    \r\n        },\r\n        \"description\": \"nice and sexy\",\r\n        \"executeDate\": \"2020-03-12\",\r\n        \"address\": {\r\n            \"id\": 555,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"Pushkina\",\r\n            \"houseNumber\": 34,\r\n            \"apartment\": 28\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzNDcwMSwiZXhwIjoxNTc5NDM1MzAxfQ.iJObkfwm98d35S_smKm0xrpzra867MhpePQtoaWJaZ7nD7DuZhPvOEi-yWya7WvFB4MoxaHKIyWC1ssPDUPeIg"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 101,\r\n        \"goods\": [{\r\n                \"id\": 29,\r\n                \"name\": \"Hultafors\",\r\n                \"type\": \"Knife\",\r\n                \"count\": 500,\r\n                \"price\": 0.65\r\n            }],\r\n        \"beverages\": [\r\n           \r\n            {\r\n                \"id\": 114,\r\n                \"name\": \"Martell\",\r\n                \"type\": \"Cognac\",\r\n                \"count\": 10,\r\n                \"price\": 55.0,\r\n                \"volume\": 1.0\r\n            }\r\n        ],\r\n        \"staff\": [\r\n            {\r\n                \"id\": 19,\r\n                \"name\": \"Dasha\",\r\n                \"surname\": \"Mudilova\",\r\n                \"phoneNumber\": 375297452387,\r\n                \"address\": {\r\n                    \"id\": 11,\r\n                    \"city\": \"GRODNO\",\r\n                    \"street\": \"Sovetskaia\",\r\n                    \"houseNumber\": 123,\r\n                    \"apartment\": 28\r\n                },\r\n                \"department\": \"WAITER\",\r\n                \"salary\": 15.0\r\n            },\r\n            {\r\n                \"id\": 18,\r\n                \"name\": \"UpdVasia\",\r\n                \"surname\": \"UpdVasichkin\",\r\n                \"phoneNumber\": 375297625465,\r\n                \"address\": {\r\n                    \"id\": 1,\r\n                    \"city\": \"GRODNO\",\r\n                    \"street\": \"Tavlaia\",\r\n                    \"houseNumber\": 15,\r\n                    \"apartment\": 23\r\n                },\r\n                \"department\": \"BARTENDER\",\r\n                \"salary\": 20.0\r\n            }\r\n        ],\r\n        \"customer\": {\r\n        \"id\": 25,\r\n        \"name\": \"Mania\",\r\n        \"surname\": \"Golovach\",\r\n        \"phoneNumber\": 375337832475,\r\n        \"address\": {\r\n            \"id\": 8,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"Pushkina\",\r\n            \"houseNumber\": 64,\r\n            \"apartment\": 23\r\n    }\r\n        },\r\n        \"price\": 985.0,\r\n        \"executeDate\": \"2019-12-02\",\r\n        \"address\": {\r\n            \"id\": 4,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"Derzinskogo\",\r\n            \"houseNumber\": 135,\r\n            \"apartment\": 76\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/order/101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"order",
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTExNjA0NiwiZXhwIjoxNTc5MTE2NjQ2fQ.xHIwuui7jqjR1N_sOI7K4e3lJy9C72GsqYVRuAd2ZqEB_ahbhtYaJnqeZSRBNw4gUCM-XlNbbFvUoGfuqKQcOg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 999,\r\n        \"goods\": [\r\n            {\r\n                \"id\": 201,\r\n                \"name\": \"Hultafors\",\r\n                \"type\": \"Knife\",\r\n                \"count\": 500,\r\n                \"price\": 0.65\r\n            }\r\n        ],\r\n        \"beverages\": [\r\n            {\r\n                \"id\": 202,\r\n                \"name\": \"Patron\",\r\n                \"type\": \"Tequila\",\r\n                \"count\": 90,\r\n                \"price\": 120.0,\r\n                \"volume\": 1.0\r\n            },\r\n            {\r\n                \"id\": 203,\r\n                \"name\": \"Highland Park\",\r\n                \"type\": \"Whisky\",\r\n                \"count\": 85,\r\n                \"price\": 100.0,\r\n                \"volume\": 1.0\r\n            }\r\n        ],\r\n \r\n        \"customer\": {\r\n            \"id\": 1001,\r\n            \"name\": \"Viktor\",\r\n            \"surname\": \"Melnik\",\r\n            \"phoneNumber\": 37532345655,\r\n            \"address\": {\r\n                \"id\": 15,\r\n                \"city\": \"GRODNO\",\r\n                \"street\": \"Derzinskogo\",\r\n                \"houseNumber\": 205,\r\n                \"apartment\": 74\r\n            },\r\n            \"discount\": 0\r\n        },\r\n        \"description\": \"nice and sexy\",\r\n        \"executeDate\": \"2020-03-12\",\r\n        \"address\": {\r\n            \"id\": 555,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"Pushkina\",\r\n            \"houseNumber\": 34,\r\n            \"apartment\": 28\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/order/413",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"order",
+								"413"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order-getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzMTM1OSwiZXhwIjoxNTc5MDMxOTU5fQ.zElrex5vyF54kF4pZhS1dLekiLDWsVgwIMOgZPTYIW2eL3m3lrfl5HI4izOk2F7b1fqVu_mQIt6yLFJIOUoZIg",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order-getById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTEyMDk4NCwiZXhwIjoxNTc5MTIxNTg0fQ.WQkgQy1wMDEbqVr7OKPA2QsiQmmBw3f-IZ3YXP2Kqmwp2cmPum_PPVV6p8p9FWZdYbe6rYf6tw3ilNGgsHvbdg"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/order/101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"order",
+								"101"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2d575550-d8e9-49bf-92f1-82ff32366572",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "501a5a01-f110-4683-a87a-69f953a1a04b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "authentication-signIn",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":1111\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/authentication/signIn",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"authentication",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authentication-newUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":1111,\n\t\"roles\" : [\"ROLE_ADMIN\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/authentication/signUp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"authentication",
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "staff",
+			"item": [
+				{
+					"name": "staff-getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzMTM1OSwiZXhwIjoxNTc5MDMxOTU5fQ.zElrex5vyF54kF4pZhS1dLekiLDWsVgwIMOgZPTYIW2eL3m3lrfl5HI4izOk2F7b1fqVu_mQIt6yLFJIOUoZIg",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/staff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"staff"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staff-getAllByStreet",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzNzMyNiwiZXhwIjoxNTc5MDM3OTI2fQ.pfAkWke7ICRtx7rPsm-Tf0JKpcagWUA22spws5uxZnwGxRtNCTta2Iw3kbp_ESjWGE-so0lo8kuY4zMXAzOa8w",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/staff/street/Derzinskogo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"staff",
+								"street",
+								"Derzinskogo"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staff-getAllByDepartment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzMTM1OSwiZXhwIjoxNTc5MDMxOTU5fQ.zElrex5vyF54kF4pZhS1dLekiLDWsVgwIMOgZPTYIW2eL3m3lrfl5HI4izOk2F7b1fqVu_mQIt6yLFJIOUoZIg",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/staff/dep/bartender",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"staff",
+								"dep",
+								"bartender"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staff-getAllById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzNzAyOSwiZXhwIjoxNTc5MDM3NjI5fQ.1q_NMgFI6Bkeal94ugTnMHYRhsQQ1_mw-PWIBfsU0ksIqRBgHKhKa4QigACxrkNG9nDcN_doFKypmprHYlAb8w",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/staff/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"staff",
+								"19"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staff-save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzMjk1MywiZXhwIjoxNTc5NDMzNTUzfQ.eNrnPaFAzan3fOA5u7mocJk1yjglsb58XTW4BkMFunpBwlGouBTngoDUrkgnJNzPbQ5IVheDLS-0hL3vzBGkvw"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 18,\r\n        \"name\": \"Vasia\",\r\n        \"surname\": \"Vasichkin\",\r\n        \"phoneNumber\": 37533454525,\r\n        \"address\": {\r\n            \"id\": 323,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"SaveDerzinskogo\",\r\n            \"houseNumber\": 56,\r\n            \"apartment\": 16\r\n        },\r\n        \"department\": \"BARTENDER\",\r\n        \"salary\": 20.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/staff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"staff"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staff-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzMDYwMywiZXhwIjoxNTc5NDMxMjAzfQ.OYmXeFnOATFYwqdZ7J0xGK3V858gBFE5cvPbnX0zSC2BwikPqOMXTgljeoajj8nJheELZ-q8tmVuexG53N7xaQ"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 22,\r\n        \"name\": \"Denis\",\r\n        \"surname\": \"UpdLusevech\",\r\n        \"phoneNumber\": 375297863695,\r\n        \"address\": {\r\n            \"id\": 5,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"Pushkina\",\r\n            \"houseNumber\": 34,\r\n            \"apartment\": 28\r\n        },\r\n        \"department\": \"CLEANER\",\r\n        \"salary\": 30.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/staff/22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"staff",
+								"22"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "staff-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzMDYwMywiZXhwIjoxNTc5NDMxMjAzfQ.OYmXeFnOATFYwqdZ7J0xGK3V858gBFE5cvPbnX0zSC2BwikPqOMXTgljeoajj8nJheELZ-q8tmVuexG53N7xaQ"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 18,\r\n        \"name\": \"Vasia\",\r\n        \"surname\": \"Vasichkin\",\r\n        \"phoneNumber\": 375297623465,\r\n        \"address\": {\r\n            \"id\": 1,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"SaveDerzinskogo\",\r\n            \"houseNumber\": 56,\r\n            \"apartment\": 16\r\n        },\r\n        \"department\": \"BARTENDER\",\r\n        \"salary\": 20.0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/staff/22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"staff",
+								"22"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d62009b1-6c5f-4710-8e42-2972d7b7ff4d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "beaf4d10-a5de-4323-9a9b-89acfb5b166f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "address",
+			"item": [
+				{
+					"name": "address-getAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "address-save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzNDI2OCwiZXhwIjoxNTc5MDM0ODY4fQ.7_Bj1SLXdlT9qLudiXFyRGes6-Tqlsep2qttjU-A-Xw1Cj_ay2kVqEkYWJvaV2zlR83sqvNjtnoxmSwqWRw8ZQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"id\": 33,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"Pushkina\",\r\n            \"houseNumber\": 34,\r\n            \"apartment\": 28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/address/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"address",
+								""
+							]
+						},
+						"description": "post"
+					},
+					"response": []
+				},
+				{
+					"name": "address-getById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzMzI3NCwiZXhwIjoxNTc5MDMzODc0fQ.OisxX0C8CICkG36foWHXzREenqP4V5Iyi-RG-ulwfm3e70Dz-N1Ru54Ihfm_DFl5bQQyp5dV4uMu6fERNV_cdw"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/address/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"address",
+								"1"
+							],
+							"query": [
+								{
+									"key": "Content-Type",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "address-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzNDI2OCwiZXhwIjoxNTc5MDM0ODY4fQ.7_Bj1SLXdlT9qLudiXFyRGes6-Tqlsep2qttjU-A-Xw1Cj_ay2kVqEkYWJvaV2zlR83sqvNjtnoxmSwqWRw8ZQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/address/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"address",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "address-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTAzNDI2OCwiZXhwIjoxNTc5MDM0ODY4fQ.7_Bj1SLXdlT9qLudiXFyRGes6-Tqlsep2qttjU-A-Xw1Cj_ay2kVqEkYWJvaV2zlR83sqvNjtnoxmSwqWRw8ZQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 13,\r\n        \"city\": \"GRODNO\",\r\n        \"street\": \"UpdBudenogo\",\r\n        \"houseNumber\": 14,\r\n        \"apartment\": 5\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/address/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"address",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzMTU0MiwiZXhwIjoxNTc5NDMyMTQyfQ.HnihZCClqD4IjWGJ1vaI8PKh9V4D5QLGHy5sdcZoWUKK9YAE78X9LByNSHUGVjcCElk9sUVWo-OqLjqd_pSiNQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e14eeb8e-40fb-48e8-9e50-42f0c63ae6ed",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d0efb19-86b1-48ac-8c2f-394d8239c533",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "customer-save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTA4NTAwNiwiZXhwIjoxNTc5MDg1NjA2fQ.i4_WrsX3UUIbg6B8mcEn2_Q9dlECyzIb8yZ2vfk693-uucwYiCkuoYtJwv-zGBQ1xzlf5k14h1af3HrvCONfvQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id\": 1023,\r\n            \"name\": \"PostViktor\",\r\n            \"surname\": \"PostMelnik\",\r\n            \"phoneNumber\": 375337434215,\r\n            \"address\": {\r\n                \"id\": 331,\r\n                \"city\": \"GRODNO\",\r\n                \"street\": \"PostDasderzinskogo\",\r\n                \"houseNumber\": 205,\r\n                \"apartment\": 74\r\n            },\r\n            \"discount\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTA4NTMzMiwiZXhwIjoxNTc5MDg1OTMyfQ.ycxw1yEcVTf7JsuDGdsODuz9_BH4x2awAbJ1bcy3laIAGpOb9XUxxJN4xicJ2yWDhz7g5nOONHwzzbBqZYEgww",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id\": 1001,\r\n            \"name\": \"PostViktor\",\r\n            \"surname\": \"PostMelnik\",\r\n            \"phoneNumber\": 375337435215,\r\n            \"address\": {\r\n                \"id\": 990,\r\n                \"city\": \"GRODNO\",\r\n                \"street\": \"PostDerzinskogo\",\r\n                \"houseNumber\": 205,\r\n                \"apartment\": 74\r\n            },\r\n            \"discount\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/customer/328",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"customer",
+								"328"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTA5MDQwMCwiZXhwIjoxNTc5MDkxMDAwfQ.63y1juMXWzew3R6i_cUu9KkbrVaBEUy2h6rL0KweT3eRnnoUUF9VRn2BLCv--r6LVmuOmjdAu7j0y_cD-TBhGQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 27,\r\n        \"name\": \"Viktor\",\r\n        \"surname\": \"UptMelnik\",\r\n        \"phoneNumber\": 375337850745,\r\n        \"address\": {\r\n            \"id\": 10,\r\n            \"city\": \"GRODNO\",\r\n            \"street\": \"Derzinskogo\",\r\n            \"houseNumber\": 105,\r\n            \"apartment\": 74\r\n        },\r\n        \"discount\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/customer/27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"customer",
+								"27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-getById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTA4NDI0NCwiZXhwIjoxNTc5MDg0ODQ0fQ.09DqgTOVy5oS5UOIw_uNrEeMFi7VtBd38J295rziL6BCMYInYNCn47uPNibAZIqHNyfbRy06qORYTxo4QsRQDQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id\": 1001,\r\n            \"name\": \"PostViktor\",\r\n            \"surname\": \"PostMelnik\",\r\n            \"phoneNumber\": 375337435215,\r\n            \"address\": {\r\n                \"id\": 990,\r\n                \"city\": \"GRODNO\",\r\n                \"street\": \"PostDerzinskogo\",\r\n                \"houseNumber\": 205,\r\n                \"apartment\": 74\r\n            },\r\n            \"discount\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/customer/24",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"customer",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTA4NDI0NCwiZXhwIjoxNTc5MDg0ODQ0fQ.09DqgTOVy5oS5UOIw_uNrEeMFi7VtBd38J295rziL6BCMYInYNCn47uPNibAZIqHNyfbRy06qORYTxo4QsRQDQ",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id\": 1001,\r\n            \"name\": \"PostViktor\",\r\n            \"surname\": \"PostMelnik\",\r\n            \"phoneNumber\": 375337435215,\r\n            \"address\": {\r\n                \"id\": 990,\r\n                \"city\": \"GRODNO\",\r\n                \"street\": \"PostDerzinskogo\",\r\n                \"houseNumber\": 205,\r\n                \"apartment\": 74\r\n            },\r\n            \"discount\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-getByPhone",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id\": 1001,\r\n            \"name\": \"PostViktor\",\r\n            \"surname\": \"PostMelnik\",\r\n            \"phoneNumber\": 375337435215,\r\n            \"address\": {\r\n                \"id\": 990,\r\n                \"city\": \"GRODNO\",\r\n                \"street\": \"PostDerzinskogo\",\r\n                \"houseNumber\": 205,\r\n                \"apartment\": 74\r\n            },\r\n            \"discount\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/customer/phone/375337452798",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"customer",
+								"phone",
+								"375337452798"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "44419278-87a7-4828-98e0-22b260380782",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "524d8f30-bf47-4b28-b992-fc5c2e5ff531",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "goods",
+			"item": [
+				{
+					"name": "goods-getAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/goods",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"goods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "goods-save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTA5MjE5NiwiZXhwIjoxNTc5MDkyNzk2fQ.qOYTbgCM0cCQRM9pM_rMnOJPQ5zrF0vtoiIU68VR5RggDOHKqnNi14_7TktJNyRh_iHxWKmfvZ6AA7tEs_m3rA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 28,\r\n        \"name\": \"Superstic\",\r\n        \"type\": \"Knife\",\r\n        \"count\": 100,\r\n        \"price\": 35.0\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/goods",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"goods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "goods-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTA5MjE5NiwiZXhwIjoxNTc5MDkyNzk2fQ.qOYTbgCM0cCQRM9pM_rMnOJPQ5zrF0vtoiIU68VR5RggDOHKqnNi14_7TktJNyRh_iHxWKmfvZ6AA7tEs_m3rA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"updsteSuperstic\",\r\n    \"type\": \"Knife\",\r\n    \"count\": 100,\r\n    \"price\": 35.0\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/goods/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"goods",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "goods-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTA5MjE5NiwiZXhwIjoxNTc5MDkyNzk2fQ.qOYTbgCM0cCQRM9pM_rMnOJPQ5zrF0vtoiIU68VR5RggDOHKqnNi14_7TktJNyRh_iHxWKmfvZ6AA7tEs_m3rA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 349,\r\n    \"name\": \"Superstic\",\r\n    \"type\": \"Knife\",\r\n    \"count\": 150,\r\n    \"price\": 35.0\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/goods/349",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"goods",
+								"349"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "goods-getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/goods/28",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"goods",
+								"28"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2b20527c-eb1f-48e5-829f-25f3ace746cd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6baac1e9-3694-4ff2-89ab-e46df552a4d0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "beverages",
+			"item": [
+				{
+					"name": "beverages-getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/beverages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"beverages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "beverages-getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/beverages/44",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"beverages",
+								"44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "beverages-save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTEwODQ1NywiZXhwIjoxNTc5MTA5MDU3fQ.cWtiCwy-Fg9GG5riqKu2FqE7oAy6ytBInmTXvDDL1Ty6q0S9ifNkjfr5rFaWg8sNQE9D6-JYx7lOoE9lgzKpxw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 44,\r\n        \"name\": \"Jack Daniels\",\r\n        \"type\": \"Whisky\",\r\n        \"count\": 100,\r\n        \"price\": 80.0,\r\n        \"volume\": 1.0\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/beverages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"beverages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "beverages-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzMzA0OSwiZXhwIjoxNTc5NDMzNjQ5fQ.CMVI0GNtRpC-ENq1HaGK2D1_LpMBBnIo-mBQztaIR3yVBBNGi0qJmv-QRY9jdnxxUErPPvVQHlwjaRZKM93tYQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/beverages/51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"beverages",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "beverages-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTEwODQ1NywiZXhwIjoxNTc5MTA5MDU3fQ.cWtiCwy-Fg9GG5riqKu2FqE7oAy6ytBInmTXvDDL1Ty6q0S9ifNkjfr5rFaWg8sNQE9D6-JYx7lOoE9lgzKpxw"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 51,\r\n        \"name\": \"upFinlandia\",\r\n        \"type\": \"Vodka\",\r\n        \"count\": 50,\r\n        \"price\": 75.0,\r\n        \"volume\": 1.0\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/beverages/51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"beverages",
+								"51"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ec19819a-7250-401b-a6d6-eebef4498f2a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "13118bf1-a5a7-41b2-bd8b-d08a28c4a1d7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "order-beverages-goods",
+			"item": [
+				{
+					"name": "order-beverage-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzNDcwMSwiZXhwIjoxNTc5NDM1MzAxfQ.iJObkfwm98d35S_smKm0xrpzra867MhpePQtoaWJaZ7nD7DuZhPvOEi-yWya7WvFB4MoxaHKIyWC1ssPDUPeIg"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"orderId\":101,\r\n\t\"nameCount\":\r\n\t\t{\t\r\n\t\t\t\"Jack Daniels\" : 15,\r\n\t\t\t\t\"Martell\":7\r\n\t\t}\r\n\t\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/orders-beverage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"orders-beverage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order-goods-update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTU3OTQzNDcwMSwiZXhwIjoxNTc5NDM1MzAxfQ.iJObkfwm98d35S_smKm0xrpzra867MhpePQtoaWJaZ7nD7DuZhPvOEi-yWya7WvFB4MoxaHKIyWC1ssPDUPeIg"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"orderId\":101,\r\n\t\"nameCount\":\r\n\t\t{\t\r\n\t\t\t\"Wood\" : 125,\r\n\t\t\t\"Plastic\":234\r\n\t\t}\r\n\t\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event_organizer_war/order-goods",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event_organizer_war",
+								"order-goods"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "be925584-0017-498b-8ea4-6ad4512c2dde",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8959e8aa-0a91-4c50-aa55-7150dc46ff20",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
