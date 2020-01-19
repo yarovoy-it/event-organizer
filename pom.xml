@@ -18,7 +18,7 @@
         <org.spring.data>2.1.8.RELEASE</org.spring.data>
         <org.postgresql.driver>42.2.8</org.postgresql.driver>
         <org.hibernate.core>5.4.4.Final</org.hibernate.core>
-        <hibernate.validator>6.0.16.Final</hibernate.validator>
+        <hibernate.validator>6.1.0.Final</hibernate.validator>
         <javax.servlet>4.0.1</javax.servlet>
         <jackson.core>2.9.9</jackson.core>
         <org.apache.commons>4.2</org.apache.commons>
