@@ -20,7 +20,7 @@
         <org.hibernate.core>5.4.4.Final</org.hibernate.core>
         <hibernate.validator>6.0.16.Final</hibernate.validator>
         <javax.servlet>4.0.1</javax.servlet>
-        <jackson.core>2.9.9</jackson.core>
+        <jackson.core>2.11.0</jackson.core>
         <org.apache.commons>4.2</org.apache.commons>
         <logback>1.2.3</logback>
         <jjwt>0.9.1</jjwt>
